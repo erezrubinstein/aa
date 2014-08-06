@@ -1,0 +1,982 @@
+-------------------------------------------------------------------------------------------------------------------
+
+class SQLConnectionPool(object):
+    """
+    This is a singleton SQL Connection Pool
+    """
+    # static singleton object
+    instance = None
+    #static thread locks
+    __singletonLock = Lock()
+    __get_connection_lock = Lock()
+
+    def __init__(self):
+        # thread safety check
+        with SQLConnectionPool.__singletonLock:
+            # singleton check
+            if SQLConnectionPool.instance is None:
+                # create an empty dictionary of connections (per db)
+                self.__connections = {}
+
+                # instantiate singleton
+                SQLConnectionPool.instance = self
+
+                # instantiate different connection method per connection type
+                self.connection_method = {  SQLConnectionType.PostGIS : postgis_connect_config,
+                                            SQLConnectionType.SQL: sql_server_connect_config }
+
+    def get_connection(self, server, database, username, password, connection_type):
+        conn = None
+        db_key = self.__get_key(server, database, username, password, connection_type)
+
+        # lock the remove connection for thread safety
+        with SQLConnectionPool.__get_connection_lock:
+            # if you have connections for this db, get one
+            if self.__connections and self.__connections.has_key(db_key) and len(self.__connections[db_key]) > 0:
+                conn = self.__connections[db_key].pop(0)
+
+        if conn is None:
+            conn = self.connection_method[connection_type](server, database, username, password)
+
+        return conn
+
+    def return_connection(self, conn, server, database, username, password, connection_type):
+        # get key
+        key = self.__get_key(server, database, username, password, connection_type)
+
+        # just in case
+        if conn is not None:
+            # lock for thread safety
+            with SQLConnectionPool.__get_connection_lock:
+                if self.__connections.has_key(key):
+                    self.__connections[key].append(conn)
+                else:
+                    self.__connections[key]=[conn]
+
+    def __get_key(self, server, database, username, password, connection_type):
+        # this is a hack to allow multi threading sql connections.
+        # without it, we will get messy errors when sharing connections in different processes
+        process_name = multiprocessing.current_process().name
+
+        return '--'.join([server, database, username, password, process_name, connection_type])
+
+
+
+class SQLConnectionType(object):
+    SQL = "SQL"
+    PostGIS = "PostGIS"
+
+
+	
+-------------------------------------------------------------------------------------------------------------------
+
+
+def convert_entity_list_to_dictionary(items, key="_id", to_str=False):
+    """
+    Take a list and convert it to a dictionary
+    """
+    if isinstance(key, basestring) or isinstance(key, int):
+        if to_str:
+            return { str(item[key]): item for item in items}
+        else:
+            return { item[key]: item for item in items}
+
+    # assume it's a function
+    elif items:
+        if to_str:
+            return { str(key(item)): item for item in items }
+        else:
+            return { key(item): item for item in items }
+
+    else:
+        return {}
+		
+-------------------------------------------------------------------------------------------------------------------
+
+
+def get_later_date(first_date, second_date):
+    # if dates are strings, make them dates
+    if isinstance(first_date, basestring):
+        first_date = parse_date(first_date)
+    if isinstance(second_date, basestring):
+        second_date = parse_date(second_date)
+
+    # if both dates are none, than we don't know
+    if first_date is None and second_date is None:
+        return None
+    # else if one date is none, return the other
+    elif first_date is None:
+        return second_date
+    elif second_date is None:
+        return first_date
+    # if both dates are there, return the bigger of the two
+    elif first_date > second_date:
+        return first_date
+    else:
+        return second_date
+
+
+def get_earlier_date(first_date, second_date):
+    # if dates are strings, make them dates
+    if isinstance(first_date, basestring):
+        first_date = parse_date(first_date)
+    if isinstance(second_date, basestring):
+        second_date = parse_date(second_date)
+
+    # if both dates are none, than we don't know
+    if first_date is None and second_date is None:
+        return None
+    # else if one date is none, return the other
+    elif first_date is None:
+        return second_date
+    elif second_date is None:
+        return first_date
+    # if both dates are there, return the bigger of the two
+    elif first_date < second_date:
+        return first_date
+    else:
+        return second_date
+
+
+class FastDateParser(object):
+    """
+    Makes a lot of date parsing much faster by remembering
+    """
+    def __init__(self):
+        self.dates = {}
+
+    def parse_date(self, date_string, default_value=None):
+
+        # if what was passed in was already a date, just return it, and don't remember it
+        if date_string and isinstance(date_string, datetime.date):
+            return date_string
+
+        # if we don't have it, add it
+        if date_string and date_string not in self.dates:
+            self.dates[date_string] = parse_date(date_string, default_value)
+
+        # only return if it's not null
+        if date_string:
+
+            # always return
+            return self.dates[date_string]
+
+        # if null, return default, since different places want different defaults
+        else:
+            return default_value
+
+
+def parse_date(date_string, default_value=None, raise_exception=False):
+    try:
+        if date_string and isinstance(date_string, datetime.date):
+            return date_string
+
+        if date_string:
+            return parser.parse(date_string)
+
+        return default_value
+
+    except:
+
+        if raise_exception:
+            raise ValueError("Invalid date format")
+        else:
+            return default_value
+
+
+def is_first_date_later_than_second(first_date, second_date):
+    # if dates are strings, make them dates
+    if isinstance(first_date, basestring):
+        first_date = parse_date(first_date)
+    if isinstance(second_date, basestring):
+        second_date = parse_date(second_date)
+    return first_date > second_date
+
+
+def normalize_start_date(start_date):
+    if not start_date:
+        start_date = start_of_world
+
+    return start_date
+
+
+def normalize_end_date(end_date):
+    if not end_date:
+        end_date = end_of_world
+
+    return end_date
+
+def pretty_please(date, default = ""):
+    """
+    Return a date in a a pretty format of "YYYY-MM-DD".
+    """
+
+    if date:
+        return str(date)[:10]
+
+    return default
+	
+END_OF_WORLD = end_of_world = datetime.datetime(3000, 1, 1)
+START_OF_WORLD = start_of_world = datetime.datetime(1900, 1, 1)
+
+	
+-------------------------------------------------------------------------------------------------------------------
+
+
+class Enum(object):
+    """
+    This is a base class for enums that provides reverse lookup functionality.
+    All enum classes should inherit this class if reverse lookup is needed.
+    """
+    @classmethod
+    def reverse(cls, value):
+        for key in dir(cls):
+            if not key.startswith('__') and getattr(cls, key) == value:
+                return key
+        raise LookupError, 'Enum reverse lookup failed for %s[%s]' % (cls.__name__, value)
+
+    @classmethod
+    def reverse_get_value(cls, value):
+        for key in dir(cls):
+            if not key.startswith('__') and getattr(cls, key) == value:
+                return getattr(cls, key)
+        raise LookupError, 'Enum reverse lookup failed for %s[%s]' % (cls.__name__, value)
+
+    @classmethod
+    def get_keys(cls):
+        return [key for key in dir(cls) if not key.startswith('__') and not key.startswith('reverse')\
+        and not key.startswith('get_')]
+
+    @classmethod
+    def get_values(cls):
+        return [getattr(cls, key) for key in dir(cls) if not key.startswith('__') and not key.startswith('reverse')\
+        and not key.startswith('get_')]
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+class IoCContainer(object):
+    """
+    This class represents our Inversion of Control (Dependency Injection) Container
+    """
+    def __init__(self):
+        self.providers = {}
+
+    def register_dependency(self, feature, provider, force_singleton = False, *args, **kwargs):
+        """
+        Method to add a new dependency
+        """
+        if callable(provider) and not force_singleton:
+            def call(): return provider(*args, **kwargs)
+        else:
+            def call(): return provider
+        self.providers[feature] = call
+
+    def is_registered(self, feature):
+        return self.providers.has_key(feature)
+    
+    def clear(self):
+        """
+        Method to clear the dependencies
+        """
+        self.providers = {}
+        
+    def __getitem__(self, feature):
+        try:
+            provider = self.providers[feature]
+        except KeyError:
+            raise KeyError, "Unknown feature named %r" % feature
+        return provider()
+    
+
+
+####################################  Start Assert Definitions  ####################################
+
+#noinspection PyUnusedLocal
+def NoAssertion(obj): return True
+
+def IsInstanceOf(*classes):
+    def test(obj): return isinstance(obj, classes)
+    return test
+
+def HasAttributes(*attributes):
+    def test(obj):
+        for each in attributes:
+            if not hasattr(obj, each): return False
+        return True
+    return test
+
+def HasMethods(*methods):
+    def test(obj):
+        for each in methods:
+            try:
+                attr = getattr(obj, each)
+            except AttributeError:
+                return False
+            if not callable(attr): return False
+        return True
+    return test
+
+
+
+####################################  End Assert Definitions  ####################################
+
+dependencies = IoCContainer()
+
+class Dependency(object):
+    """
+    This class represents an actual dependency and it's used to interact with the IoC Container
+    """
+
+    def __init__(self, feature, assertion=NoAssertion):
+        self.value = self.__request(feature, assertion)
+
+    def __request(self, feature, assertion):
+        obj = dependencies[feature]
+        assert assertion(obj), \
+             "The value %r of %r does not match the specified criteria" \
+             % (obj, feature)
+        return obj
+
+		
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+
+class CompetitiveStoreHelper(object):
+    """
+    This class represents a set of competitive stores belonging to one home store and one trade area
+    This is not a standard business object.  Rather, it is more like a cloud_provider, which helps us synchronize sets of competitive stores.
+    """
+    def __init__(self, home_store, away_stores, trade_area_id, data_repository):
+        self.home_store = home_store
+        self.away_stores = away_stores
+        self.trade_area_id  = trade_area_id
+        self.data_repository = data_repository
+        self.is_sql_data_repository = hasattr(self.data_repository, "is_sql") and self.data_repository.is_sql
+
+        # get dependencies
+        self._log = Dependency("LogManager").value
+
+        # query the current set of competitive stores, which we need to do the diffs
+        self.previous_away_stores = self.data_repository.get_competitive_stores(self.home_store.store_id, self.trade_area_id)
+
+    def synchronize_competitive_stores_in_db(self):
+        """
+        This method synchronizes the competitive stores:
+           - new stores are added
+           - existing stores are updated
+           - deleted stores are marked with an end_date
+        """
+
+        # figure out if there are any stores whose competitive record "disappeared"
+        stores_to_close = set(self.previous_away_stores) - set(self.away_stores)
+
+        # if any competitive store disappeared, log an error.  Used to raise an exception, but we changed this for core.
+        if len(stores_to_close) > 0:
+
+            # log a warning.  no need to delete these, since core will "update" them away.  this does not happen in SQL
+            self._log.warning("several away stores (%s) have disappeared from the list." % str([store.away_store_id for store in stores_to_close]))
+
+        # insert/update new away stores
+        batch_competitive_stores = []
+        if self.away_stores and len(self.away_stores) > 0:
+            batch_competitive_stores = self._upsert_new_away_stores()
+
+        # !IMP! this is for forward compatibility (i.e. the core mongo code)
+        # always call, even if it's an empty array
+        self.data_repository.batch_upsert_competitive_stores(self.trade_area_id, batch_competitive_stores)
+
+
+    def synchronize_monopolies_in_db(self):
+        """
+        This method synchronizes the monopoly record:
+           - new monopoly is inserted
+           - old monopoly is closed
+           - updated monopoly is closed, and then a new one is inserted
+        """
+
+        # get all current competitive stores (include closed ones)
+        competitive_store_instances = self.data_repository.get_competitive_stores(self.home_store.store_id, self.trade_area_id)
+
+        # delete all monopolies
+        self.data_repository.delete_from_monopolies(self.home_store.store_id, self.trade_area_id)
+
+        # declare batch monopolies list for later insertion.  SQL Repository inserts one by one.  Only Core batches.
+        batch_monopolies_list = []
+
+        # if there are competitive store instances, figure out historical monopolies
+        if competitive_store_instances:
+            # figure out new monopoly date range
+            transition_parameters = self._get_monopoly_transition_parameters(competitive_store_instances)
+
+            # transition each range
+            for transition in transition_parameters:
+                # transitioning monopolies is very complex.  We are delegating it to a specific _cloud_provider file
+                MonopolyTransitionHelper.transition_monopoly_record(self.home_store, self.trade_area_id, transition.away_stores, transition.previous_away_stores,
+                    self.data_repository, batch_monopolies_list)
+
+        # complete monopoly always!!!
+        else:
+            MonopolyTransitionHelper.transition_monopoly_record(self.home_store, self.trade_area_id, [], [],
+                self.data_repository, batch_monopolies_list)
+
+
+        # if home store closes, make sure to always close that monopoly
+        # Erez - I feel like this should never need to happen, but I remember a certain scenario where we needed it
+        if self.home_store._assumed_closed_date is not None and self.home_store._assumed_closed_date != END_OF_WORLD:
+            self.data_repository.close_monopoly_record(self.home_store.store_id, self.trade_area_id, self.home_store._assumed_closed_date, batch_monopolies_list)
+
+
+        # batch upsert monopolies (Only in core.  This does nothing in SQL data repository)
+        self.data_repository.batch_upsert_monopolies(self.trade_area_id, batch_monopolies_list)
+
+
+
+    # -------------------------------------------- Private Methods --------------------------------------------
+
+    def _upsert_new_away_stores(self):
+
+        batch_competitive_stores = []
+
+        # !IMP! the for loop is for backwards compatibility for the SQL code.  CoreDataRepository ignores this.
+        for away_store in self.away_stores:
+
+            # figure out the opened date for the store (either it's the store's opened date or the home store's opened date.  whichever is later)
+            opened_date = get_later_date(away_store._assumed_opened_date, self.home_store._assumed_opened_date)
+            closed_date = get_earlier_date(away_store._assumed_closed_date, self.home_store._assumed_closed_date)
+
+            # make sure you consider company opened/closed dates in the equation in case the company opened/closed before the store
+            opened_date = get_later_date(opened_date, away_store.competitive_companies_assumed_start_date)
+            closed_date = get_earlier_date(closed_date, away_store.competitive_companies_assumed_end_date)
+
+            if opened_date is None or closed_date is None or opened_date < closed_date:
+
+                # add to batch for core
+                batch_competitive_stores.append(self._create_batch_competition_structure(away_store, opened_date, closed_date, self.is_sql_data_repository, self.home_store.store_id))
+
+        return batch_competitive_stores
+
+
+    def _get_monopoly_transition_parameters(self, competitive_store_instances):
+        # get transition dates
+        transition_dates = self._get_transition_dates(competitive_store_instances)
+
+        # create transition parameters
+        transition_parameters = []
+        previous_away_stores = []
+        for transition_date in transition_dates:
+
+            # for non "infinity" end_dates
+            if transition_date != END_OF_WORLD:
+                # get all competitive_store records that are opened on or before the date and are not closed (non-inclusive)
+                current_away_stores = [csi for csi in competitive_store_instances if
+                                       csi.opened_date <= transition_date < (csi.closed_date or END_OF_WORLD)]
+            else:
+                current_away_stores = [csi for csi in competitive_store_instances if csi.closed_date is None or csi.closed_date == END_OF_WORLD]
+
+            # create transition range
+            transition_parameters.append(MonopolyTransitionParameter(current_away_stores, previous_away_stores))
+
+            #set previous csi as current csi
+            previous_away_stores = current_away_stores
+
+        return transition_parameters
+
+    def _get_transition_dates(self, competitive_store_instance):
+        opened_dates = set([csi.opened_date for csi in competitive_store_instance])
+        # null becomes 1/1/3000
+        closed_dates = set([csi.closed_date or END_OF_WORLD for csi in competitive_store_instance])
+        home_dates = { self.home_store._assumed_opened_date, self.home_store._assumed_closed_date or END_OF_WORLD }
+
+        # get unique list of dates
+        return sorted(opened_dates | closed_dates | home_dates)
+
+    @classmethod
+    def _create_batch_competition_structure(cls, away_store, opened_date, closed_date, is_sql_data_repository = False,
+                                            home_store_id = None):
+        """
+        Class Method so that it can be called from outside as a helper
+        """
+
+        away_structure = {
+            "away_store_id": away_store.away_store_id,
+            "away_company_id": away_store.company_id,
+            "start_date": opened_date,
+            "end_date": closed_date,
+            "weight": away_store.competitive_weight,
+            "away_company_name": away_store.company_name,
+            "away_street_number": away_store.street_number,
+            "away_street": away_store.street,
+            "away_city": away_store.city,
+            "away_state": away_store.state,
+            "away_zip": away_store.zip_code,
+            "away_geo": [away_store.longitude, away_store.latitude],
+            "away_lng": away_store.longitude,
+            "away_lat": away_store.latitude
+        }
+
+        # add certain fields to sql data repository only
+        if is_sql_data_repository:
+            away_structure["home_store_id"] = home_store_id
+            away_structure["competitive_company_id"] = away_store.competitive_company_id
+            away_structure["travel_time"] = away_store.travel_time
+
+        return away_structure
+
+
+
+class MonopolyTransitionParameter(object):
+    def __init__(self, away_stores, previous_away_stores):
+        self.away_stores = away_stores
+        self.previous_away_stores = previous_away_stores
+		
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+class CompetitionType(Enum):
+    """
+    This represents competition types.  In the db, these are called monopoly_types
+    """
+    HasForeignCompetitors = 0
+    SinglePlayerMonopoly = 1
+    AbsoluteMonopoly = 2
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+class TradeAreaThreshold(Enum):
+    DistanceMiles10 = 1
+    DriveTimeMinutes10 = 2
+    LatitudeLongitudeDecimal = 3
+    DistanceMiles1 = 4
+    DistanceMiles5 = 5
+    GridDistanceMiles6 = 6
+    GridDistanceMiles10 = 7
+    DistanceMiles3 = 8
+    DistanceMiles6 = 9
+    GridDistanceMiles20 = 10
+    GridDistanceMiles4 = 11
+    DistanceMiles2 = 12
+    DistanceMiles40 = 13
+    DistanceMiles20 = 14
+    DistanceMilesPoint5 = 15
+    DistanceMiles7 = 16
+    DistanceMilesPoint25 = 17
+
+class DistanceImpedance(Enum):
+    distance_impedance = {
+        TradeAreaThreshold.DriveTimeMinutes10: 10,
+        TradeAreaThreshold.DistanceMiles10: 10,
+        TradeAreaThreshold.DistanceMiles1: 1,
+        TradeAreaThreshold.DistanceMiles5: 5,
+        TradeAreaThreshold.DistanceMiles3: 3,
+        TradeAreaThreshold.DistanceMiles6: 6,
+        TradeAreaThreshold.DistanceMiles2: 2,
+        TradeAreaThreshold.DistanceMiles20: 20,
+        TradeAreaThreshold.DistanceMiles40: 40,
+        TradeAreaThreshold.GridDistanceMiles6: 6,
+        TradeAreaThreshold.GridDistanceMiles10: 10,
+        TradeAreaThreshold.GridDistanceMiles20: 20,
+        TradeAreaThreshold.DistanceMilesPoint5: 0.5,
+        TradeAreaThreshold.DistanceMiles7: 7,
+        TradeAreaThreshold.DistanceMilesPoint25: 0.25
+    }
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+def GeoProcess(parameter):
+
+    # get parameters
+    file_name = parameter.file_name
+    thresholds = parameter.thresholds
+    successful_list = parameter.successful_list
+    failed_list = parameter.failed_list
+    failed_stores_list = parameter.failed_stores_list
+
+    # register dependencies for every sub process
+    register_concrete_dependencies()
+
+    # get some dependencies
+    logger = Dependency("LogManager").value
+    config = Dependency("Config").value
+
+    # if we have more errors, than an average of 10 per process, than kill everything...
+    if len(failed_stores_list) / config.max_processes > 10:
+        failed_list.append(file_name)
+        logger.critical("skipping geoprocessing.  over the error limit")
+        return
+
+    try:
+        logger.info("started processing file:%s" % file_name)
+
+        # parse file partition into a list of companies/stores
+        file_partitioner = GeoProcessingPartitionUtility()
+        store_partitions = file_partitioner.parse_inputs(file_name)
+
+        # run geoprocessing for every partition
+        for company_store_tuple in store_partitions:
+            try:
+                __run_geoprocessing(company_store_tuple, thresholds, logger, config)
+            except Exception as ex:
+
+                # add to failed store list
+                failed_stores_list.append(company_store_tuple)
+                logger.critical("failed to process company,store: %d,%d   error:%s" % (company_store_tuple[0], company_store_tuple[1], str(ex)))
+                logger.critical(traceback.format_exc())
+
+        # add to successful list
+        successful_list.append(file_name)
+        logger.info("finished processing file:%s at %s" % (file_name, str(datetime.now())))
+
+    except Exception as ex:
+        # add to failed file list
+        failed_list.append(file_name)
+        logger.critical("failed to process file:%s   error:%s" % (file_name, str(ex)))
+        logger.critical(traceback.format_exc())
+
+
+def __run_geoprocessing(company_store_tuple, thresholds, logger, config):
+
+    company_id = company_store_tuple[0]
+    store_id = company_store_tuple[1]
+
+    # run per threshold
+    for threshold in thresholds:
+        threshold_name = TradeAreaThreshold.reverse(threshold)
+        with RunTimeProfiler("Running GeoProcessors company_id:%d    store_id:%d    threshold:%s" % (company_id, store_id, threshold_name), logger):
+
+            # run the gps
+            __run_gps(threshold, company_id, store_id, config)
+
+
+def __run_gps(threshold, company_id, store_id, config):
+    # run only those gps that are configured in the configuration object.
+    # this could be done better through a dictionary, but this this is an easy way to make sure things are run in the correct order
+    geoprocessors = config.geoprocessors
+
+    if "GP1" in geoprocessors:
+        GP1_10_1_GeoProcessor(threshold).process(company_id, store_id)
+
+    if "GP2Replica" in geoprocessors:
+        GP2_Replica_PostGIS(threshold).process(company_id, store_id)
+
+    if "GP4" in geoprocessors:
+        GP4ZipCodeProximityProcessor(threshold).process(company_id, store_id)
+
+    if "GP6" in geoprocessors:
+        GP6_BA_Online_Reports(threshold).process(company_id, store_id)
+
+    if "GP12" in geoprocessors:
+        GP12GiveShapeGetDemographics(threshold).process(company_id, store_id)
+
+    # these are commented out and haven't been used in a while
+    #GP2_10_1_GeoProcessor(threshold).process(company_id, store_id)
+    #GP5ArcGISDriveTimeProcessor(threshold).process(company_id, store_id)
+
+    if "GP10" in geoprocessors:
+        GP10_BA_Online_Reports_From_Trade_Area(threshold).process(company_id, store_id)
+
+
+def RegionalGeoProcess(parameter):
+
+    # get parameters
+    stores = parameter["stores"]
+    regional_object = parameter["regional_objects"]
+    failed_list = parameter["failed_list"]
+    gp_method = parameter["gp"]
+
+    # register dependencies for every sub process
+    register_concrete_dependencies()
+
+    # get the logger
+    logger = Dependency("LogManager").value
+
+    # if we have more errors, than an average of 10 per process, than kill everything...
+    if len(failed_list) / config.max_processes > 10:
+        failed_list.append(regional_object.name)
+        logger.critical("skipping geoprocessing.  over the error limit")
+        return
+
+    try:
+        logger.info("starting processing regional gp: %s" % regional_object.name)
+
+        # run the gp
+        try:
+
+            # run the correct regional gp
+            if gp_method == "GP20":
+                GP20StoresWithinCBSA(regional_object, stores).simple_process()
+            elif gp_method == "GP21":
+                GP21StoresWithinCounty(regional_object, stores).simple_process()
+
+        except Exception as ex:
+
+            # add to failed store list
+            failed_list.append(regional_object.name)
+            logger.critical("failed to process regional gp: %s   error:%s" % (regional_object.name, str(ex)))
+            logger.critical(traceback.format_exc())
+
+        # add to successful list
+        logger.info("finished processing regional gp:%s at %s" % (regional_object.name, str(datetime.now())))
+
+    except Exception as ex:
+
+        # add to failed file list
+        failed_list.append(regional_object.name)
+        logger.critical("failed to process regional gp:%s   error:%s" % (regional_object.name, str(ex)))
+        logger.critical(traceback.format_exc())
+
+
+
+##################################################################################################################################
+######################################################## Controller ##############################################################
+##################################################################################################################################
+
+class Controller(object):
+    def __init__(self):
+
+        # parse parameters
+        self.config = Dependency("Config").value
+        self.file_partitioner = GeoProcessingPartitionUtility()
+        self.logger = logger
+        self.controller_inputs = self.config.controller_inputs
+        self.thresholds =  [getattr(TradeAreaThreshold, threshold) for threshold in config.trade_area_thresholds]
+        self.failed_stores_file = "execution_files/failed_stores.txt"
+        self.twice_failed_stores_file = "execution_files/twice_failed_stores.txt"
+
+
+    def partition_input_files(self):
+        self.files_to_execute, self.company_store_tuples = self.file_partitioner.partition_input_file(self.controller_inputs)
+
+
+    def execute_geo_processing(self):
+
+        # figure out if we qualify for geoprocessing (i.e. we have at least one normal gp)
+        geoprocessors = config.geoprocessors
+        qualifies_for_gp = "GP1" in geoprocessors or \
+                          "GP2Replica" in geoprocessors or \
+                          "GP4" in geoprocessors or \
+                          "GP6" in geoprocessors or \
+                          "GP12" in geoprocessors or \
+                          "GP10" in geoprocessors
+
+        if self.files_to_execute and qualifies_for_gp:
+
+            # create a multi processing manger and several lists
+            mgr = Manager()
+            successful_list = mgr.list()
+            failed_list = mgr.list()
+            failed_stores_list = mgr.list()
+
+            # run the set of files passed in (post-partitioning)
+            with RunTimeProfiler("execute_geo_processing on %d files using %d max processes" % (len(self.files_to_execute), self.config.max_processes), self.logger):
+
+                # reprocess file_partition names into a tuple with its threshold
+                parameters = [GeoProcessorParameter(file_partition_name, self.thresholds, successful_list, failed_list, failed_stores_list) for file_partition_name in self.files_to_execute]
+
+                # process pool is created below inside of the __main__ code.
+                # it's important that it's created there and not here.  More comments below.
+                main_process_pool.map(GeoProcess, parameters)
+                main_process_pool.close()
+                main_process_pool.join()
+
+            # manually re run all stores that have failed in the same process (process pool already closed)
+            failed_twice_list = []
+            if failed_list:
+                GeoProcess(GeoProcessorParameter(self.failed_stores_file, self.thresholds, successful_list, failed_list, failed_twice_list))
+
+            # write all failed stores back to a failed_stores.txt and twice_failed_stores.txt file
+            self.__write_failed_stores(failed_stores_list, self.failed_stores_file)
+            self.__write_failed_stores(failed_stores_list, self.twice_failed_stores_file)
+
+            # report on the original run
+            for file_name in successful_list:
+                logger.info("successfully processed: %s" % file_name)
+
+            for file_name in failed_list:
+                logger.info("failed to process: %s" % file_name)
+
+            for company_store_tuple in failed_stores_list:
+                logger.info("failed to process company,store: %d,%d" % (company_store_tuple[0], company_store_tuple[1]))
+
+        else:
+
+            # log a warning and close the pool
+            logger.warning("Skipping main geoprocessing...")
+            main_process_pool.close()
+
+
+    def execute_regional_geoprocessing(self):
+
+        # get store ids from the store tuples
+        store_ids = [tup[1] for tup in self.company_store_tuples]
+
+        # query all stores and get the store_id, lat, long
+        store_points = store_handler.get_store_points_by_store_ids(store_ids)
+        qualifies_for_gp = "GP20" in config.geoprocessors or \
+                           "GP21" in config.geoprocessors
+
+        # see if this qualifies for regional processing
+        if store_points and qualifies_for_gp:
+
+            # create a multi processing manger and several lists
+            mgr = Manager()
+            failed_list = mgr.list()
+
+            # create base parameters
+            parameters = []
+
+            # if GP20, is there, add the cbsa parameters
+            if "GP20" in config.geoprocessors:
+
+                # query all cbsas
+                cbsas = regional_handler.get_all_cbsas()
+
+                # create parameters to map against the cbsa
+                parameters += [
+                    {
+                        "stores": store_points,
+                        "regional_objects": cbsa,
+                        "failed_list": failed_list,
+                        "gp": "GP20"
+                    }
+                    for cbsa in cbsas
+                ]
+
+            # if GP21, is there, add the region parameters
+            if "GP21" in config.geoprocessors:
+
+                # query all counties
+                counties = regional_handler.get_all_counties()
+
+                # create parameters to map against the cbsa
+                parameters += [
+                    {
+                        "stores": store_points,
+                        "regional_objects": county,
+                        "failed_list": failed_list,
+                        "gp": "GP21"
+                    }
+                    for county in counties
+                ]
+
+            with RunTimeProfiler("executing regional geoprocessing on %d files using %d max processes" % (len(self.files_to_execute), self.config.max_processes), self.logger):
+
+                # process pool is created below inside of the __main__ code.
+                # it's important that it's created there and not here.  More comments below.
+                cbsa_process_pool.map(RegionalGeoProcess, parameters)
+                cbsa_process_pool.close()
+                cbsa_process_pool.join()
+
+        else:
+
+            # log a warning and close the pool
+            logger.warning("skipping regional geoprocessors")
+            cbsa_process_pool.close()
+
+
+
+    def __write_failed_stores(self, failed_stores, file_name):
+        with open(file_name, 'w+') as file:
+            for company_store_tuple in failed_stores:
+                company_id = company_store_tuple[0]
+                store_id = company_store_tuple[1]
+                file.write("%d,%d\n" % (company_id, store_id))
+
+
+class GeoProcessorParameter(object):
+    def __init__(self, file_name, thresholds, successful_list, failed_list, failed_stores_list):
+        self.file_name = file_name
+        self.thresholds = thresholds
+        self.successful_list = successful_list
+        self.failed_list = failed_list
+        self.failed_stores_list = failed_stores_list
+
+
+
+
+##################################################################################################################################
+########################################################### Main #################################################################
+##################################################################################################################################
+
+
+def main():
+    controller = None
+
+
+    # create controller object (i.e. parse parameters)
+    try:
+        # create controller
+        controller = Controller()
+
+    except Exception as ex:
+        logger.critical(str(ex))
+        logger.critical(traceback.format_exc())
+        return 1
+
+
+    # partition input file into smaller files
+    try:
+        controller.partition_input_files()
+    except Exception as ex:
+        logger.critical(str(ex))
+        logger.critical(traceback.format_exc())
+        return 2
+
+    # execute main geoprocessing
+    try:
+        controller.execute_geo_processing()
+    except Exception as ex:
+        logger.critical(str(ex))
+        logger.critical(traceback.format_exc())
+        return 3
+
+    # execute regional (e.g. cbsa, counties, etc... geoprocessing)
+    try:
+        controller.execute_regional_geoprocessing()
+    except Exception as ex:
+        logger.critical(str(ex))
+        logger.critical(traceback.format_exc())
+        return 3
+
+    #granda sukceso (http://translate.google.com/#eo/en/granda%20sukceso)
+    return 0
+
+
+if __name__ == '__main__':
+
+    # create the process pool right away.  this makes sure that the process doesn't "copy" the current process' memory (i.e. forking)
+    # this is key or we will have a lot of strange issues with multiprocessing!!!!
+    config = Config().instance
+    main_process_pool = Pool(config.max_processes)
+    cbsa_process_pool = Pool(config.max_processes)
+
+    # register dependencies
+    register_concrete_dependencies()
+
+    # create base objects
+    logger = Dependency("LogManager").value
+
+    # run
+    ret_code = main()
+
+    # wait for log manager to finish
+    if logger._sql_handler:
+        logger._sql_handler.wait_for_threads_to_finish()
+
+    exit(ret_code)
+
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
