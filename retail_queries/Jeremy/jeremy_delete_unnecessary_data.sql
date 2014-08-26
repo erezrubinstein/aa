@@ -1,0 +1,265 @@
+use retaildb_timeseries_office_supplies_v3_shrunken
+go
+
+declare @threshold_id int = 5 -- set for file miles
+
+-- find all trade areas with this threshold id
+declare @trade_areas table (trade_area_id int primary key)
+insert into @trade_areas
+select trade_area_id from trade_areas where threshold_id <> @threshold_id
+
+-- delete all data associated with these trade areas
+/*
+delete from demographic_numvalues where trade_area_id in (select trade_area_id from @trade_areas)
+delete from demographic_strvalues where trade_area_id in (select trade_area_id from @trade_areas)
+delete from monopolies where trade_area_id in (select trade_area_id from @trade_areas)
+delete from trade_area_shapes where trade_area_id in (select trade_area_id from @trade_areas)
+delete from competitive_stores where trade_area_id in (select trade_area_id from @trade_areas)
+delete from trade_area_analytics where trade_area_id in (select trade_area_id from @trade_areas)
+delete from trade_areas where trade_area_id in (select trade_area_id from @trade_areas)
+*/
+
+
+
+
+-- declare data items that you want to keep
+declare @date_items_keep table (data_item_id int primary key)
+insert into @date_items_keep
+SELECT 13 UNION
+SELECT 16 UNION
+SELECT 31 UNION
+SELECT 48 UNION
+SELECT 52 UNION
+SELECT 56 UNION
+SELECT 60 UNION
+SELECT 64 UNION
+SELECT 68 UNION
+SELECT 72 UNION
+SELECT 76 UNION
+SELECT 80 UNION
+SELECT 84 UNION
+SELECT 88 UNION
+SELECT 261 UNION
+SELECT 639 UNION
+SELECT 647 UNION
+SELECT 648 UNION
+SELECT 651 UNION
+SELECT 652 UNION
+SELECT 653 UNION
+SELECT 654 UNION
+SELECT 655 UNION
+SELECT 658 UNION
+SELECT 659 UNION
+SELECT 660 UNION
+SELECT 661 UNION
+SELECT 662 UNION
+SELECT 665 UNION
+SELECT 666 UNION
+SELECT 667 UNION
+SELECT 668 UNION
+SELECT 669 UNION
+SELECT 672 UNION
+SELECT 673 UNION
+SELECT 674 UNION
+SELECT 675 UNION
+SELECT 676 UNION
+SELECT 679 UNION
+SELECT 680 UNION
+SELECT 681 UNION
+SELECT 682 UNION
+SELECT 683 UNION
+SELECT 686 UNION
+SELECT 687 UNION
+SELECT 688 UNION
+SELECT 689 UNION
+SELECT 690 UNION
+SELECT 693 UNION
+SELECT 694 UNION
+SELECT 695 UNION
+SELECT 696 UNION
+SELECT 697 UNION
+SELECT 700 UNION
+SELECT 701 UNION
+SELECT 702 UNION
+SELECT 703 UNION
+SELECT 704 UNION
+SELECT 707 UNION
+SELECT 708 UNION
+SELECT 709 UNION
+SELECT 710 UNION
+SELECT 711 UNION
+SELECT 714 UNION
+SELECT 715 UNION
+SELECT 716 UNION
+SELECT 717 UNION
+SELECT 718 UNION
+SELECT 721 UNION
+SELECT 722 UNION
+SELECT 723 UNION
+SELECT 724 UNION
+SELECT 725 UNION
+SELECT 728 UNION
+SELECT 729 UNION
+SELECT 730 UNION
+SELECT 731 UNION
+SELECT 732 UNION
+SELECT 735 UNION
+SELECT 736 UNION
+SELECT 737 UNION
+SELECT 738 UNION
+SELECT 739 UNION
+SELECT 742 UNION
+SELECT 743 UNION
+SELECT 744 UNION
+SELECT 745 UNION
+SELECT 746 UNION
+SELECT 749 UNION
+SELECT 750 UNION
+SELECT 751 UNION
+SELECT 752 UNION
+SELECT 753 UNION
+SELECT 756 UNION
+SELECT 757 UNION
+SELECT 758 UNION
+SELECT 759 UNION
+SELECT 760 UNION
+SELECT 763 UNION
+SELECT 764 UNION
+SELECT 765 UNION
+SELECT 766 UNION
+SELECT 767 UNION
+SELECT 770 UNION
+SELECT 771 UNION
+SELECT 772 UNION
+SELECT 773 UNION
+SELECT 774 UNION
+SELECT 777 UNION
+SELECT 778 UNION
+SELECT 779 UNION
+SELECT 780 UNION
+SELECT 781 UNION
+SELECT 784 UNION
+SELECT 785 UNION
+SELECT 786 UNION
+SELECT 787 UNION
+SELECT 788 UNION
+SELECT 791 UNION
+SELECT 792 UNION
+SELECT 793 UNION
+SELECT 794 UNION
+SELECT 795 UNION
+SELECT 798 UNION
+SELECT 799 UNION
+SELECT 800 UNION
+SELECT 801 UNION
+SELECT 802 UNION
+SELECT 805 UNION
+SELECT 806 UNION
+SELECT 807 UNION
+SELECT 808 UNION
+SELECT 809 UNION
+SELECT 812 UNION
+SELECT 813 UNION
+SELECT 814 UNION
+SELECT 815 UNION
+SELECT 816 UNION
+SELECT 819 UNION
+SELECT 820 UNION
+SELECT 821 UNION
+SELECT 822 UNION
+SELECT 823 UNION
+SELECT 826 UNION
+SELECT 827 UNION
+SELECT 828 UNION
+SELECT 829 UNION
+SELECT 830 UNION
+SELECT 833 UNION
+SELECT 834 UNION
+SELECT 835 UNION
+SELECT 836 UNION
+SELECT 837 UNION
+SELECT 840 UNION
+SELECT 841 UNION
+SELECT 842 UNION
+SELECT 843 UNION
+SELECT 844 UNION
+SELECT 847 UNION
+SELECT 848 UNION
+SELECT 849 UNION
+SELECT 850 UNION
+SELECT 851 UNION
+SELECT 854 UNION
+SELECT 855 UNION
+SELECT 856 UNION
+SELECT 1334 UNION
+SELECT 1337 UNION
+SELECT 1340 UNION
+SELECT 1343 UNION
+SELECT 1346 UNION
+SELECT 1349 UNION
+SELECT 1352 UNION
+SELECT 1355 UNION
+SELECT 1358 UNION
+SELECT 1361 UNION
+SELECT 1364 UNION
+SELECT 1367 UNION
+SELECT 1370 UNION
+SELECT 1373 UNION
+SELECT 1376 UNION
+SELECT 1379 UNION
+SELECT 1382 UNION
+SELECT 1385 UNION
+SELECT 1388 UNION
+SELECT 1391 UNION
+SELECT 1394 UNION
+SELECT 1397 UNION
+SELECT 1400 UNION
+SELECT 1403 UNION
+SELECT 1406 UNION
+SELECT 1409 UNION
+SELECT 1412 UNION
+SELECT 1415 UNION
+SELECT 1418 UNION
+SELECT 1421 UNION
+SELECT 1424 UNION
+SELECT 1427 UNION
+SELECT 1430 UNION
+SELECT 1433 UNION
+SELECT 1436 UNION
+SELECT 1439 UNION
+SELECT 1442 UNION
+SELECT 1445 UNION
+SELECT 1448 UNION
+SELECT 1451 UNION
+SELECT 1454 UNION
+SELECT 1457 UNION
+SELECT 1460 UNION
+SELECT 1463
+
+
+-- get data items to delete
+declare @date_items_delete table (data_item_id int primary key)
+insert into @date_items_delete
+select data_item_id from data_items where data_item_id not in (select data_item_id from @date_items_keep)
+
+-- delete all demographics, which are not in this set
+
+
+
+delete top(20000000) from demographic_numvalues where data_item_id in (select data_item_id from @date_items_delete)
+delete top(20000000) from demographic_strvalues where data_item_id in (select data_item_id from @date_items_delete)
+
+
+declare @companies_to_delete_competitions_from table(company_id int primary key)
+insert into @companies_to_delete_competitions_from
+select company_id
+from companies
+where name in ('New Auto Dealers', 'Fast Lube & Oil Change Stores', 'Tires')
+
+/*
+delete cs
+from competitive_stores cs
+inner join stores home on home.store_id = cs.home_store_id
+inner join stores away on away.store_id = cs.away_store_id
+where home.company_id in (select company_id from @companies_to_delete_competitions_from)
+*/
