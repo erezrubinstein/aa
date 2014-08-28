@@ -1,0 +1,456 @@
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,123 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: GridFS Error: Unsupported API call UnsupportedAPI: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+UnsupportedAPI
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,127 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: GridFS Error: File already exists FileExists: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+FileExists
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,128 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: GridFS Error: File does not exist NoFile: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+NoFile
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,129 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: GridFS Error: File is corrupt CorruptGridFile: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+CorruptGridFile
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,130 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: GridFS Error GridFSError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+GridFSError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,131 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: DB Error: connection failure ConnectionFailure: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ConnectionFailure
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,132 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: DB Error: operation timeout TimeoutError: None
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+TimeoutError: None
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,134 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: DB Error: duplicate key DuplicateKeyError: None
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+DuplicateKeyError: None
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,136 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: DB Error: operation failure OperationFailure: None
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+OperationFailure: None
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,138 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: DB Error PyMongoError: None
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+PyMongoError: None
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,140 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: BSON Error: object creation InvalidBSON: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InvalidBSON
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,143 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: BSON Error: string encoding InvalidStringData: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InvalidStringData
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,145 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: BSON Error: document creation InvalidDocument: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InvalidDocument
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,147 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: BSON Error: id creation InvalidId: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InvalidId
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,149 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: BSON Error: BSONError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+BSONError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,151 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Record Error: Validation Failed RecValidationError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+RecValidationError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,153 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Record Error: Invalid Input RecInputError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+RecInputError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,154 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Record Error RecError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+RecError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,156 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Service Access Error: Invalid Parameters ServiceParamsError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ServiceParamsError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,157 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Service Access Error: Failed Service Call ServiceCallError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ServiceCallError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,159 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Service Access Error ServiceAccessError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ServiceAccessError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,160 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Bad Request BadRequestError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+BadRequestError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,161 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Unauthorized Access UnauthorizedError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+UnauthorizedError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,162 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Forbidden ForbiddenError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ForbiddenError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,163 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Not Found NotFoundError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+NotFoundError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,164 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Method Not Allowed MethodNotAllowedError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+MethodNotAllowedError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,165 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error: Conflict ConflictError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ConflictError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,166 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Service Error ServiceError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ServiceError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,168 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error: Internal InternalError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InternalError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,169 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error: Entity Matcher MatcherError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+MatcherError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,170 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error: Data / DB DataError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+DataError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,171 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error: Input InputError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+InputError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,172 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error WorkflowError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+WorkflowError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,174 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Core Error CoreError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+CoreError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,175 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Memory error MemoryError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+MemoryError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,176 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Calculation error ArithmeticError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+ArithmeticError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,178 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Runtime error RuntimeError: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+RuntimeError
+
+Erezs-MacBook-Pro.local: 2014-03-13 12:04:58,179 - ERROR     	[             api:389   ]	UNIT TESTING: Core - Main (Test) v0.1	(PID 15822)	Error Message: Error Exception: 
+Traceback (most recent call last):
+  File "/Users/erezrubinstein/nri_code/python/core/service/framework/api.py", line 262, in service_response_wrapper
+    result = service_call_function(*args, **kwargs)
+  File "/Users/erezrubinstein/nri_code/python/core/service/svc_main/main_api.py", line 197, in api_entity_type_summary
+    summary = app.call_mds("call_get_entity_type_summary", entity_type=entity_type)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 765, in __call__
+    return mock_method(*params, **named_params)
+  File "/Users/erezrubinstein/Envs/venv/lib/python2.7/site-packages/mox.py", line 1010, in __call__
+    raise expected_method._exception
+Exception
+

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report>
+    <ReportInfo>
+        <ReportTitle />
+        <ReportName>Age by Sex Report (Nexus)</ReportName>
+        <TemplateName>Nexus Age by Sex Report</TemplateName>
+        <ReportType>Summary</ReportType>
+        <ReportTitle2>Custom Title</ReportTitle2>
+    </ReportInfo>
+    <Areas>
+        <Area>
+            <ReportItem name="AREA_ID" caption="AREA_ID" value="120131_1" />
+            <ReportItem name="AREA_DESC" caption="AREA_DESC" value="10 miles" />
+            <ReportItem name="DEMOG_ID" caption="DEMOG_ID" value="0" />
+            <ReportItem name="STORE_ID" caption="STORE_ID" value="120131" />
+            <ReportItem name="RING" caption="RING" value="1" />
+            <ReportItem name="STORE_NAME" caption="STORE_NAME" value="" />
+            <ReportItem name="STORE_ADDR" caption="STORE_ADDR" value="120131" />
+            <ReportItem name="AREA_DESC2" caption="AREA_DESC2" value="Ring: 10 mile radius" />
+            <ReportItem name="STORE_LAT" caption="STORE_LAT" value="41.039799" />
+            <ReportItem name="STORE_LONG" caption="STORE_LONG" value="-73.595016" />
+            <ReportItem name="SITE_NAME" caption="SITE_NAME" value="" />
+            <ReportItem name="MALE0C10" caption="MALE0C10" value="14516" />
+            <ReportItem name="MALE5C10" caption="MALE5C10" value="15354" />
+            <ReportItem name="MALE10C10" caption="MALE10C10" value="15778" />
+            <ReportItem name="MALE15C10" caption="MALE15C10" value="14572" />
+            <ReportItem name="MALE20C10" caption="MALE20C10" value="12325" />
+            <ReportItem name="MALE25C10" caption="MALE25C10" value="14225" />
+            <ReportItem name="MALE30C10" caption="MALE30C10" value="14641" />
+            <ReportItem name="MALE35C10" caption="MALE35C10" value="15400" />
+            <ReportItem name="MALE40C10" caption="MALE40C10" value="16538" />
+            <ReportItem name="MALE45C10" caption="MALE45C10" value="16977" />
+            <ReportItem name="MALE50C10" caption="MALE50C10" value="15924" />
+            <ReportItem name="MALE55C10" caption="MALE55C10" value="13078" />
+            <ReportItem name="MALE60C10" caption="MALE60C10" value="10858" />
+            <ReportItem name="MALE65C10" caption="MALE65C10" value="7930" />
+            <ReportItem name="MALE70C10" caption="MALE70C10" value="5719" />
+            <ReportItem name="MALE75C10" caption="MALE75C10" value="4768" />
+            <ReportItem name="MALE80C10" caption="MALE80C10" value="3808" />
+            <ReportItem name="MALE85C10" caption="MALE85C10" value="3304" />
+            <ReportItem name="MAL18UP10" caption="MAL18UP10" value="160420" />
+            <ReportItem name="MAL21UP10" caption="MAL21UP10" value="153250" />
+            <ReportItem name="MEDMAGE10" caption="MEDMAGE10" value="37.1" />
+            <ReportItem name="FEM0C10" caption="FEM0C10" value="13783" />
+            <ReportItem name="FEM5C10" caption="FEM5C10" value="14829" />
+            <ReportItem name="FEM10C10" caption="FEM10C10" value="14827" />
+            <ReportItem name="FEM15C10" caption="FEM15C10" value="13658" />
+            <ReportItem name="FEM20C10" caption="FEM20C10" value="11219" />
+            <ReportItem name="FEM25C10" caption="FEM25C10" value="13307" />
+            <ReportItem name="FEM30C10" caption="FEM30C10" value="14179" />
+            <ReportItem name="FEM35C10" caption="FEM35C10" value="15512" />
+            <ReportItem name="FEM40C10" caption="FEM40C10" value="17507" />
+            <ReportItem name="FEM45C10" caption="FEM45C10" value="18325" />
+            <ReportItem name="FEM50C10" caption="FEM50C10" value="17003" />
+            <ReportItem name="FEM55C10" caption="FEM55C10" value="14268" />
+            <ReportItem name="FEM60C10" caption="FEM60C10" value="12181" />
+            <ReportItem name="FEM65C10" caption="FEM65C10" value="9411" />
+            <ReportItem name="FEM70C10" caption="FEM70C10" value="7315" />
+            <ReportItem name="FEM75C10" caption="FEM75C10" value="6425" />
+            <ReportItem name="FEM80C10" caption="FEM80C10" value="5946" />
+            <ReportItem name="FEM85C10" caption="FEM85C10" value="6675" />
+            <ReportItem name="FEM18UP10" caption="FEM18UP10" value="173830" />
+            <ReportItem name="FEM21UP10" caption="FEM21UP10" value="167164" />
+            <ReportItem name="MEDFAGE10" caption="MEDFAGE10" value="40.5" />
+        </Area>
+    </Areas>
+</Report>

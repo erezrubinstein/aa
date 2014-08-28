@@ -1,0 +1,843 @@
+{
+    "entity_types":
+    {
+        "company":
+        {
+            "requirements":
+            {
+                "name": "string",
+                "type":
+                    [
+                        "retail_parent",
+                        "retail_banner",
+                        "retail_concept",
+                        "retailer_cooperative"
+                    ],
+                "status":
+                    [
+                        "operating",
+                        "operating_subsidiary",
+                        "out_of_business"
+                    ]
+            }
+        },
+        "store": {
+            "requirements":
+            {
+                "company_name": "string",
+                "phone_number": "string"
+            }
+        },
+        "industry": {},
+        "address": {
+            "requirements":
+            {
+                "street_number": "string",
+                "street": "string",
+                "city": "string",
+                "state": "string",
+                "zip": "string",
+                "geo": "list",
+                "country": "string"
+            }
+        },
+        "retail_input_record": {},
+        "geography": {},
+        "file":
+        {
+            "requirements":
+            {
+                "rds_file_name": "string",
+                "rds_file_path": "string",
+                "type":
+                    [
+                        "retail_input_file",
+                        "sec_filing",
+                        "investor_presentation",
+                        "press_release",
+                        "news_article",
+                        "social_network_post"
+                    ]
+            }
+        },
+        "period":
+        {
+            "requirements":
+            {
+                "start_time": "datetime",
+                "end_time": "datetime",
+                "duration_type":
+                    [
+                        "Year",
+                        "Half Year",
+                        "Quarter",
+                        "Month",
+                        "Day",
+                        "Point-In-Time",
+                        "Arbitrary Length"
+                    ]
+            }
+        },
+        "trade_area":
+        {
+            "requirements":
+            {
+                "measurement_type":
+                    [
+                        "distance miles",
+                        "drive time minutes",
+                        "latitude longitude decimal"
+                    ],
+                "measurement": "float"
+            }
+        },
+        "zip_code":
+        {
+            "requirements":
+            {
+                "latitude": "float",
+                "longitude": "float",
+                "zip_code": "string"
+            }
+        },
+        "retailer_transaction":
+        {
+            "creation_meta": "none"
+        },
+        "_top": {}
+    },
+
+    "relation_types":
+    {
+        "corporate_structure":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "corporate_parent",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "subsidiary",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                }
+            ],
+
+        "retailer_branding":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_parent",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_segment",
+                        "requirements":
+                        {
+                            "type": ["retail_banner"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_parent",
+                        "requirements":
+                        {
+                            "type": ["retail_banner"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_segment",
+                        "requirements":
+                        {
+                            "type": ["retail_concept"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                }
+            ],
+
+        "retailer_cooperatives":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "cooperative_parent",
+                        "requirements":
+                        {
+                            "type": ["retailer_cooperative"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "cooperative_member",
+                        "requirements":
+                        {
+                            "type": ["retail_banner"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                }
+            ],
+
+        "supply_chain":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "supplier",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "customer",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "supplier",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "distributor",
+                        "requirements":
+                        {
+                            "type": ["retail_parent"]
+                        }
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "company_competition":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "competitor",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "competitor",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "company_cotenancy":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "cotenant",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "cotenant",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "store_ownership":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_parent",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "store",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "store",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "retail_parent",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "address_assignment":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "subject",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "address",
+                        "entity_role": "location",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "subject",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "address",
+                        "entity_role": "location",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "industry_classification":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "primary_industry_classification",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "industry",
+                        "entity_role": "primary_industry",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false,
+                        "primary": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "secondary_industry_classification",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "industry",
+                        "entity_role": "secondary_industry",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false,
+                        "primary": false
+                    }
+                }
+            ],
+
+        "industry_hierarchy":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "industry",
+                        "entity_role": "parent",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "industry",
+                        "entity_role": "child",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                }
+            ],
+
+        "retail_input":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "retail_input_record",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "company",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "company",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "retail_input_record",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "most_correct_record",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "store",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "store",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "most_correct_record",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "company",
+                        "entity_role": "company",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "file",
+                        "entity_role": "retail_input_file",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "file",
+                        "entity_role": "retail_input_file",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "retail_input_record",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "replaced",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "replacement",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+
+        "geography_hierarchy":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "nation",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "region",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "region",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "division",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "division",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "state",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "state",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "county",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "county",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "census_tract",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "census_tract",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "geography",
+                        "entity_role": "census_block_group",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                },{
+                "from":
+                {
+                    "entity_type": "geography",
+                    "entity_role": "census_block_group",
+                    "requirements": {}
+                },
+                "to":
+                {
+                    "entity_type": "geography",
+                    "entity_role": "census_block",
+                    "requirements": {}
+                },
+                "properties":
+                {
+                    "ownership": false
+                }
+            }
+            ],
+
+        "support_file":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "file",
+                        "entity_role": "file",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "retail_input_record",
+                        "entity_role": "target",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+        "store_trade_area":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "home_store",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "trade_area",
+                        "entity_role": "trade_area",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+        "store_trade_area_competition":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "store",
+                        "entity_role": "away_store",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "trade_area",
+                        "entity_role": "trade_area",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+        "trade_area_competition":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "trade_area",
+                        "entity_role": "home_trade_area",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "trade_area",
+                        "entity_role": "away_trade_area",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ],
+        "_system":
+            [
+                {
+                    "from":
+                    {
+                        "entity_type": "_top",
+                        "entity_role": "_has",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "_all",
+                        "entity_role": "_belongs",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": true
+                    }
+                },
+                {
+                    "from":
+                    {
+                        "entity_type": "_all",
+                        "entity_role": "_linked",
+                        "requirements": {}
+                    },
+                    "to":
+                    {
+                        "entity_type": "_all",
+                        "entity_role": "_linked",
+                        "requirements": {}
+                    },
+                    "properties":
+                    {
+                        "ownership": false
+                    }
+                }
+            ]
+    }
+}

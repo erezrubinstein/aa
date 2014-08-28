@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<Report>
+    <ReportItem name="TOTPOP10" type="xs:double" minOccurs="0" caption="2010 Total Population"/>
+    <ReportItem name="TOTPOP_CY" type="xs:double" minOccurs="0" caption="2011 Total Population"/>
+    <ReportItem name="TOTPOP_FY" type="xs:double" minOccurs="0" caption="2016 Total Population"/>
+    <ReportItem name="TOTHH10" type="xs:double" minOccurs="0" caption="2010 Total Households"/>
+    <ReportItem name="TOTHH_CY" type="xs:double" minOccurs="0" caption="2011 Total Households"/>
+    <ReportItem name="TOTHH_FY" type="xs:double" minOccurs="0" caption="2016 Total Households"/>
+    <ReportItem name="FAMHH10" type="xs:double" minOccurs="0" caption="2010 Family Households"/>
+    <ReportItem name="FAMHH_CY" type="xs:double" minOccurs="0" caption="2011 Family Households"/>
+    <ReportItem name="FAMHH_FY" type="xs:double" minOccurs="0" caption="2016 Family Households"/>
+    <ReportItem name="AVGHHSZ10" type="xs:double" minOccurs="0" caption="2010 Average Household Size"/>
+    <ReportItem name="AVGHHSZ_CY" type="xs:double" minOccurs="0" caption="2011 Average Household Size"/>
+    <ReportItem name="AVGHHSZ_FY" type="xs:double" minOccurs="0" caption="2016 Average Household Size"/>
+    <ReportItem name="OWNER10" type="xs:double" minOccurs="0" caption="2010 Owner-occupied HUs"/>
+    <ReportItem name="OWNER_CY" type="xs:double" minOccurs="0" caption="2011 Owner-occupied HUs"/>
+    <ReportItem name="OWNER_FY" type="xs:double" minOccurs="0" caption="2016 Owner-occupied HUs"/>
+    <ReportItem name="RENTER10" type="xs:double" minOccurs="0" caption="2010 Renter-occupied HUs"/>
+    <ReportItem name="RENTER_CY" type="xs:double" minOccurs="0" caption="2011 Renter-occupied HUs"/>
+    <ReportItem name="RENTER_FY" type="xs:double" minOccurs="0" caption="2016 Renter-occupied HUs"/>
+    <ReportItem name="MEDAGE10" type="xs:double" minOccurs="0" caption="2010 Median Age"/>
+    <ReportItem name="MEDAGE_CY" type="xs:double" minOccurs="0" caption="2011 Median Age"/>
+    <ReportItem name="MEDAGE_FY" type="xs:double" minOccurs="0" caption="2016 Median Age"/>
+    <ReportItem name="SCRIPT_ANU" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Population (Area)"/>
+    <ReportItem name="POPRATE_S" type="xs:string" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Population (State) (Formatted)"/>
+    <ReportItem name="TR_POP_NAT" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Population (National)"/>
+    <ReportItem name="SCRIPT_A_1" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Households (Area)"/>
+    <ReportItem name="HHRATE_S" type="xs:string" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Households (State) (Formatted)"/>
+    <ReportItem name="TR_HH_NAT" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Households (National)"/>
+    <ReportItem name="SCRIPT_A_2" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Families (Area)"/>
+    <ReportItem name="FAMRATE_S" type="xs:string" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Families (State) (Formatted)"/>
+    <ReportItem name="TR_FAM_NAT" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Families (National)"/>
+    <ReportItem name="SCRIPT_AN1" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Owner HHs (Area)"/>
+    <ReportItem name="OWNRATE_S" type="xs:string" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Owner HHs (State) (Formatted)"/>
+    <ReportItem name="TR_OWN_NAT" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Owner HHs (National)"/>
+    <ReportItem name="SCRIPT_AN0" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Median Household Income (Area)"/>
+    <ReportItem name="INCRATE_S" type="xs:string" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Median Household Income (State) (Formatted)"/>
+    <ReportItem name="TR_MHI_NAT" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Median Household Income (National)"/>
+    <ReportItem name="HINC0_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc <$15000"/>
+    <ReportItem name="HINC0_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: <$15,000 Percent"/>
+    <ReportItem name="HINC0_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc <$15000"/>
+    <ReportItem name="HINC0_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: <$15,000 Percent"/>
+    <ReportItem name="HINC15_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $15000-24999"/>
+    <ReportItem name="HINC15_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $15,000 - $24,999 Percent"/>
+    <ReportItem name="HINC15_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $15000-24999"/>
+    <ReportItem name="HINC15_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $15,000 - $24,999 Percent"/>
+    <ReportItem name="HINC25_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $25000-34999"/>
+    <ReportItem name="HINC25_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $25,000 - $34,999 Percent"/>
+    <ReportItem name="HINC25_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $25000-34999"/>
+    <ReportItem name="HINC25_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $25,000 - $34,999 Percent"/>
+    <ReportItem name="HINC35_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $35000-49999"/>
+    <ReportItem name="HINC35_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $35,000 - $49,999 Percent"/>
+    <ReportItem name="HINC35_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $35000-49999"/>
+    <ReportItem name="HINC35_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $35,000 - $49,999 Percent"/>
+    <ReportItem name="HINC50_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $50000-74999"/>
+    <ReportItem name="HINC50_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $50,000 - $74,999 Percent"/>
+    <ReportItem name="HINC50_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $50000-74999"/>
+    <ReportItem name="HINC50_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $50,000 - $74,999 Percent"/>
+    <ReportItem name="HINC75_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $75000-99999"/>
+    <ReportItem name="HINC75_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $75,000 - $99,999 Percent"/>
+    <ReportItem name="HINC75_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $75000-99999"/>
+    <ReportItem name="HINC75_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $75,000 - $99,999 Percent"/>
+    <ReportItem name="HINC100_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $100000-149999"/>
+    <ReportItem name="HINC100_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $100,000 - $149,999 Percent"/>
+    <ReportItem name="HINC100_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $100000-149999"/>
+    <ReportItem name="HINC100_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $100,000 - $149,999 Percent"/>
+    <ReportItem name="HINC150_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $150000-199999"/>
+    <ReportItem name="HINC150_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $150,000 - $199,999 Percent"/>
+    <ReportItem name="HINC150_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $150000-199999"/>
+    <ReportItem name="HINC150_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $150,000 - $199,999 Percent"/>
+    <ReportItem name="HINC200_CY" type="xs:double" minOccurs="0" caption="2011 HHs w/Inc $200000+"/>
+    <ReportItem name="HINC200_CY_P" type="xs:double" minOccurs="0" caption="2011 Households by Income: $200,000+ Percent"/>
+    <ReportItem name="HINC200_FY" type="xs:double" minOccurs="0" caption="2016 HHs w/Inc $200000+"/>
+    <ReportItem name="HINC200_FY_P" type="xs:double" minOccurs="0" caption="2016 Households by Income: $200,000+ Percent"/>
+    <ReportItem name="MEDHINC_CY" type="xs:double" minOccurs="0" caption="2011 Median Household Income"/>
+    <ReportItem name="MEDHINC_FY" type="xs:double" minOccurs="0" caption="2016 Median Household Income"/>
+    <ReportItem name="AVGHINC_CY" type="xs:double" minOccurs="0" caption="2011 Average Household Income"/>
+    <ReportItem name="AVGHINC_FY" type="xs:double" minOccurs="0" caption="2016 Average Household Income"/>
+    <ReportItem name="PCI_CY" type="xs:double" minOccurs="0" caption="2011 Per Capita Income"/>
+    <ReportItem name="PCI_FY" type="xs:double" minOccurs="0" caption="2016 Per Capita Income"/>
+    <ReportItem name="POP0C10" type="xs:double" minOccurs="0" caption="2010 Total Population 0-4"/>
+    <ReportItem name="POP0C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 0-4 Percent"/>
+    <ReportItem name="POP0_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 0-4"/>
+    <ReportItem name="POP0_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 0-4 Percent"/>
+    <ReportItem name="POP0_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 0-4"/>
+    <ReportItem name="POP0_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 0-4 Percent"/>
+    <ReportItem name="POP5C10" type="xs:double" minOccurs="0" caption="2010 Total Population 5-9"/>
+    <ReportItem name="POP5C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 5-9 Percent"/>
+    <ReportItem name="POP5_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 5-9"/>
+    <ReportItem name="POP5_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 5-9 Percent"/>
+    <ReportItem name="POP5_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 5-9"/>
+    <ReportItem name="POP5_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 5-9 Percent"/>
+    <ReportItem name="POP10C10" type="xs:double" minOccurs="0" caption="2010 Total Population 10-14"/>
+    <ReportItem name="POP10C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 10-14 Percent"/>
+    <ReportItem name="POP10_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 10-14"/>
+    <ReportItem name="POP10_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 10-14 Percent"/>
+    <ReportItem name="POP10_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 10-14"/>
+    <ReportItem name="POP10_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 10-14 Percent"/>
+    <ReportItem name="POP15C10" type="xs:double" minOccurs="0" caption="2010 Total Population 15-19"/>
+    <ReportItem name="POP15C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 15-19 Percent"/>
+    <ReportItem name="POP15_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 15-19"/>
+    <ReportItem name="POP15_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 15-19 Percent"/>
+    <ReportItem name="POP15_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 15-19"/>
+    <ReportItem name="POP15_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 15-19 Percent"/>
+    <ReportItem name="POP20C10" type="xs:double" minOccurs="0" caption="2010 Total Population 20-24"/>
+    <ReportItem name="POP20C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 20-24 Percent"/>
+    <ReportItem name="POP20_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 20-24"/>
+    <ReportItem name="POP20_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 20-24 Percent"/>
+    <ReportItem name="POP20_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 20-24"/>
+    <ReportItem name="POP20_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 20-24 Percent"/>
+    <ReportItem name="POP2534C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 25-34"/>
+    <ReportItem name="POP2534C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 25-34 Percent"/>
+    <ReportItem name="POP2534_CY" type="xs:double" minOccurs="0" caption="2011 Age 25-34"/>
+    <ReportItem name="POP2534_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 25-34 Percent"/>
+    <ReportItem name="POP2534_FY" type="xs:double" minOccurs="0" caption="2016 Pop 25-34"/>
+    <ReportItem name="POP2534_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 25-34 Percent"/>
+    <ReportItem name="POP3544C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 35-44"/>
+    <ReportItem name="POP3544C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 35-44 Percent"/>
+    <ReportItem name="POP3544_CY" type="xs:double" minOccurs="0" caption="2011 Pop 35-44"/>
+    <ReportItem name="POP3544_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 35-44 Percent"/>
+    <ReportItem name="POP3544_FY" type="xs:double" minOccurs="0" caption="2016 Pop 35-44"/>
+    <ReportItem name="POP3544_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 35-44 Percent"/>
+    <ReportItem name="POP4554C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 45-54"/>
+    <ReportItem name="POP4554C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 45-54 Percent"/>
+    <ReportItem name="POP4554_CY" type="xs:double" minOccurs="0" caption="2011 Pop 45-54"/>
+    <ReportItem name="POP4554_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 45-54 Percent"/>
+    <ReportItem name="POP4554_FY" type="xs:double" minOccurs="0" caption="2016 Pop 45-54"/>
+    <ReportItem name="POP4554_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 45-54 Percent"/>
+    <ReportItem name="POP5564C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 55-64"/>
+    <ReportItem name="POP5564C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 55-64 Percnet"/>
+    <ReportItem name="POP5564_CY" type="xs:double" minOccurs="0" caption="2011 Pop 55-64"/>
+    <ReportItem name="POP5564_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 55-64 Percent"/>
+    <ReportItem name="POP5564_FY" type="xs:double" minOccurs="0" caption="2016 Pop 55-64"/>
+    <ReportItem name="POP5564_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 55-64 Percent"/>
+    <ReportItem name="POP6574C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 65-74"/>
+    <ReportItem name="POP6574C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Pop 65-74 Percent"/>
+    <ReportItem name="POP6574_CY" type="xs:double" minOccurs="0" caption="2011 Pop 65-74"/>
+    <ReportItem name="POP6574_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 65-74 Percent"/>
+    <ReportItem name="POP6574_FY" type="xs:double" minOccurs="0" caption="2016 Age 65-74"/>
+    <ReportItem name="POP6574_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 65-74 Percent"/>
+    <ReportItem name="POP7584C10" type="xs:double" minOccurs="0" caption="Census 2010 Pop 75-84"/>
+    <ReportItem name="POP7584C10_P" type="xs:double" minOccurs="0" caption="Census 2010 Age 75-84 Percent"/>
+    <ReportItem name="POP7584_CY" type="xs:double" minOccurs="0" caption="2011 Pop 74-84"/>
+    <ReportItem name="POP7584_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 75-84 Percent"/>
+    <ReportItem name="POP7584_FY" type="xs:double" minOccurs="0" caption="2016 Pop 75-84"/>
+    <ReportItem name="POP7584_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 75-84 Percent"/>
+    <ReportItem name="POP85C10" type="xs:double" minOccurs="0" caption="2010 Total Population 85+"/>
+    <ReportItem name="POP85PC10_P" type="xs:double" minOccurs="0" caption="Census 2010 Age 85+ Percent"/>
+    <ReportItem name="POP85_CY" type="xs:double" minOccurs="0" caption="2011 Total Population 85+"/>
+    <ReportItem name="POP85P_CY_P" type="xs:double" minOccurs="0" caption="2011 Pop 85+ Percent"/>
+    <ReportItem name="POP85_FY" type="xs:double" minOccurs="0" caption="2016 Total Population 85+"/>
+    <ReportItem name="POP85P_FY_P" type="xs:double" minOccurs="0" caption="2016 Pop 85+ Percent"/>
+    <ReportItem name="WHITE10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: White"/>
+    <ReportItem name="WHITE10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: White Alone Percent"/>
+    <ReportItem name="WHITE_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: White"/>
+    <ReportItem name="WHITE_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: White Alone Percent"/>
+    <ReportItem name="WHITE_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: White"/>
+    <ReportItem name="WHITE_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: White Alone Percent"/>
+    <ReportItem name="BLACK10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: Black"/>
+    <ReportItem name="BLACK10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Black Alone Percent"/>
+    <ReportItem name="BLACK_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: Black"/>
+    <ReportItem name="BLACK_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Black Alone Percent"/>
+    <ReportItem name="BLACK_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: Black"/>
+    <ReportItem name="BLACK_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Black Alone Percent"/>
+    <ReportItem name="AMERIND10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: Amer Indian"/>
+    <ReportItem name="AMERIND10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: American Indian Alone Percent"/>
+    <ReportItem name="AMERIND_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: Amer Indian"/>
+    <ReportItem name="AMERIND_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: American Indian Alone Percent"/>
+    <ReportItem name="AMERIND_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: Amer Indian"/>
+    <ReportItem name="AMERIND_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: American Indian Alone Percent"/>
+    <ReportItem name="ASIAN10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: Asian"/>
+    <ReportItem name="ASIAN10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Asian Alone Percent"/>
+    <ReportItem name="ASIAN_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: Asian"/>
+    <ReportItem name="ASIAN_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Asian Alone Percent"/>
+    <ReportItem name="ASIAN_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: Asian"/>
+    <ReportItem name="ASIAN_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Asian Alone Percent"/>
+    <ReportItem name="PACIFIC10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: Pacific"/>
+    <ReportItem name="PACIFIC10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Pacific Islander Alone Percent"/>
+    <ReportItem name="PACIFIC_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: Pacific"/>
+    <ReportItem name="PACIFIC_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Pacific Islander Alone Percent"/>
+    <ReportItem name="PACIFIC_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: Pacific"/>
+    <ReportItem name="PACIFIC_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Pacific Islander Alone Percent"/>
+    <ReportItem name="OTHRACE10" type="xs:double" minOccurs="0" caption="2010 Pop-1 Race: Other Race"/>
+    <ReportItem name="OTHRACE10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Some Other Race Alone Percent"/>
+    <ReportItem name="OTHRACE_CY" type="xs:double" minOccurs="0" caption="2011 Pop-1 Race: Other Race"/>
+    <ReportItem name="OTHRACE_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Some Other Race Alone Percent"/>
+    <ReportItem name="OTHRACE_FY" type="xs:double" minOccurs="0" caption="2016 Pop-1 Race: Other Race"/>
+    <ReportItem name="OTHRACE_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Some Other Race Alone Percent"/>
+    <ReportItem name="RACE2UP10" type="xs:double" minOccurs="0" caption="2010 Pop of Two or More Races"/>
+    <ReportItem name="RACE2UP10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Two or More Races Percent"/>
+    <ReportItem name="RACE2UP_CY" type="xs:double" minOccurs="0" caption="2011 Pop of Two or More Races"/>
+    <ReportItem name="RACE2UP_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Two or More Races Percent"/>
+    <ReportItem name="RACE2UP_FY" type="xs:double" minOccurs="0" caption="2016 Pop of Two or More Races"/>
+    <ReportItem name="RACE2UP_FY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Two or More Races Percent"/>
+    <ReportItem name="HISPPOP10" type="xs:double" minOccurs="0" caption="2010 Hispanic Population"/>
+    <ReportItem name="HISPPOP10_P" type="xs:double" minOccurs="0" caption="Census 2010 Race and Ethnicity: Hispanic Origin (Any Race) Percent"/>
+    <ReportItem name="HISPPOPCY" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Hispanic Origin (Any Race) (2010, Number)"/>
+    <ReportItem name="HISPPOP_CY_P" type="xs:double" minOccurs="0" caption="2011 Race and Ethnicity: Hispanic Origin (Any Race) Percent"/>
+    <ReportItem name="HISPPOPFY" type="xs:double" minOccurs="0" caption="Race and Ethnicity: Hispanic Origin (Any Race) (2015, Number)"/>
+    <ReportItem name="HISPPOPFY_P" type="xs:double" minOccurs="0" caption="2016 Race and Ethnicity: Hispanic Origin (Any Race) Percent"/>
+    <ReportItem name="POPRATE" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Population (State)"/>
+    <ReportItem name="HHRATE" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Households (State)"/>
+    <ReportItem name="FAMRATE" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Families (State)"/>
+    <ReportItem name="OWNRATE" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Owner HHs (State)"/>
+    <ReportItem name="INCRATE" type="xs:double" minOccurs="0" caption="Trends: 2011 - 2016 Annual Rate: Median Household Income (State)"/>
+</Report>

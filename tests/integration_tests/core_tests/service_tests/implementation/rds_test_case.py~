@@ -1,0 +1,380 @@
+from __future__ import division
+import StringIO
+from common.utilities.inversion_of_control import Dependency
+from core.common.utilities.include import *
+from core.tests.integration_tests. \
+    service_tests.implementation.svc_test_case      import ServiceTestCase
+import codecs
+
+###################################################################################################
+
+expected_file_info = {
+    "integration_test_files/rds_test_file.txt":
+        {
+        "contentType": "text/plain",
+        "chunkSize": 262144,
+        "short_filename": "rds_test_file.txt",
+        "filename": "integration_test_files/rds_test_file.txt",
+        "length": 84,
+        "md5": "dc719d1ca213a3c9742e7b68c20774c0",
+        "metadata":
+            {
+                "user_id": "int_testsdasdf",
+                "dl_history": [],
+                "num_dls": 0,
+                "path": "integration_test_files/",
+                "user_email": "int_test@nexusri.com",
+                "permissions": []
+            }
+        },
+    "integration_test_files/DavidHasselhoff.png": {
+        "contentType": "image/png",
+        "chunkSize": 262144,
+        "short_filename": "DavidHasselhoff.png",
+        "filename": "integration_test_files/DavidHasselhoff.png",
+        "length": 398957,
+        "md5": "ccfcb786e9c4cb39a5bafc3e2f11b6c8",
+        "metadata": {
+            "user_id": "int_test",
+            "dl_history": [],
+            "num_dls": 0,
+            "path": "integration_test_files/",
+            "user_email": "int_test@nexusri.com",
+            "permissions": []
+        }
+    }
+}
+
+expected_post_download_file_metadata = {
+    "metadata":
+        {
+            "user_id": "int_test",
+            "num_dls": 1,
+            "path": "integration_test_files/",
+            "user_email": "int_test@nexusri.com",
+            "permissions": []
+        }
+}
+
+expected_file_contents = {
+    "integration_test_files/rds_test_file.txt": """This is an integration test for RDS.
+
+http://www.youtube.com/watch?v=-HnwhGgsgXc
+"""
+}
+
+class RDSTestCase(ServiceTestCase):
+
+    def setUp(self):
+        self.user_id = 'int_test'
+        self.user_email = 'int_test@nexusri.com'
+        self.rest = Dependency('RestProvider').value
+        self.remote_dirs = ['integration_test_files/', 'integration_test_files/chuck_norris/']
+        self.local_dir = 'implementation/data/'
+        self.test_files = [
+            'rds_test_file.txt',
+            'DavidHasselhoff.png'
+        ]
+
+        self.clear_integration_test_remote_folder()
+
+
+    def init_once(self):
+        self.clear_integration_test_remote_folder()
+
+
+    def tearDown(self):
+        self.clear_integration_test_remote_folder()
+
+
+    def clear_integration_test_remote_folder(self):
+        self.__delete_folder(self.remote_dirs[0])
+
+
+    ## private methods ##
+
+
+    def __create_upload_list(self, filenames, local_folder, remote_folder):
+        """
+        Create a list of 2-index tuples to call __upload_files() where [0] is the local filename and
+        [1] is the remote filename.  There is only one local folder that contains the actual files,
+        but the purpose is to be able to upload these same files to multiple remote rds folders.
+        """
+        return [(local_folder + filename, remote_folder + filename) for filename in filenames]
+
+
+    def __upload_files(self, filenames, remote_folders):
+        """
+        This werkzeug test framework really did not implement file handling well.  I can't send a metadata dictionary
+        in the data dictionary because werkzeug thinks it's a file, so I can't test pre-defining metadata.
+        """
+        path = self.get_path("upload/", "RDS")
+        file_ids = {}
+
+        for remote_folder in remote_folders:
+            upload_list = self.__create_upload_list(filenames, self.local_dir, remote_folder)
+            data = {
+                'user_id': self.user_id,
+                'user_email': self.user_email,
+                'path': remote_folder
+            }
+            for file_to_upload in upload_list:
+                local_file_name = file_to_upload[0]
+                remote_file_name = file_to_upload[1]
+                filename = os.path.split(local_file_name)[1]
+                with open(local_file_name, 'rb') as f:
+                    data[remote_file_name] = (StringIO.StringIO(f.read()), filename)
+
+            response = self.client.post(path, follow_redirects=True, data = data)
+            self.assert200(response)
+
+            # check response message
+            for file_to_upload in upload_list:
+                #file_name = os.path.split(os.path.abspath(file_to_upload[0]))[1]
+                self.assertIn(file_to_upload[1], response.data)
+
+            file_ids.update(self.get_json(response, 'RDS')['data'])
+
+        return file_ids
+
+
+    def __download_file(self, lookup_type, lookup):
+        # app = self.get_app()
+        # url = app.config["RDS_API_URL"] + download_file_path % (self.user_id, self.user_email, lookup)
+        # response = nri_service_get(url, None, stream = True)
+
+        path = self.get_path('download/%s/%s' % (lookup_type, lookup), 'RDS')
+        response = self.client.get(path,
+                                   follow_redirects=True,
+                                   query_string='user_id=%s&user_email=%s' % (self.user_id, self.user_email))
+        self.assert200(response)
+        return response
+
+
+    def __get_file_info(self, filename):
+        path = self.get_path('info/%s' % filename, 'RDS')
+        response = self.client.get(path)
+        #self.assert200(response)
+        return self.get_json(response, 'RDS')
+
+
+    def __compare_dict(self, expected, candidate):
+        """
+        Recursively compare the file info dictionary returned by RDS to an expected dictionary.
+        Here we are only comparing a subset of the file info because we can't compare
+        upload time and _id to a predefined value.
+        """
+        for key in expected.keys():
+            if isinstance(expected[key], dict):
+                if key not in candidate or not isinstance(candidate[key], dict):
+                    return False
+                else:
+                    if not self.__compare_dict(expected[key], candidate[key]):
+                        return False
+            elif key not in candidate or candidate[key] != expected[key]:
+                return False
+        return True
+
+
+    def __get_file_listing(self, files_path):
+        if files_path == '/':
+            files_path = ''
+        path = self.get_path('files/manager/%s' % files_path, 'RDS')
+        response = self.client.get(path)
+        self.assert200(response)
+        return self.get_json(response, 'RDS')
+
+
+    def __remove_linux_BOM(self, data):
+        """
+        Linux has a BOM (byte order mark) at the beginning of a file describing its UTF encoding.
+        Remove this if it exists.
+        """
+        if data.startswith(codecs.BOM_UTF8):
+            return data.lstrip(codecs.BOM_UTF8)
+        else:
+            return data
+
+
+    def __delete_file(self, filename):
+        """
+        Delete a specific filename
+        """
+        path = self.get_path('delete/file/name/%s' % filename, 'RDS')
+        response = self.client.delete(path)
+        self.assert200(response)
+        return self.get_json(response, 'RDS')
+
+
+    def __delete_folder(self, path_to_delete):
+        """
+        Delete a folder and recursively delete subfolders if recursive flag == True
+        """
+        path = self.get_path('delete/folder/%s' % path_to_delete, 'RDS')
+        response = self.client.delete(path, follow_redirects = True)
+        self.assert200(response)
+        response_json = self.get_json(response, "RDS")
+        self.assertIn("Recursively deleted folder: " + path_to_delete, response_json['message'])
+        return self.get_json(response, 'RDS')
+
+
+    ## test methods
+
+    def test_upload_files(self):
+        """
+        Test that 2 files can upload and that all the expected file attributes and metadata are
+        exactly as expected.
+        """
+        upload_list = self.__create_upload_list(self.test_files, self.local_dir, self.remote_dirs[0])
+        file_ids = self.__upload_files(self.test_files, [self.remote_dirs[0]])
+
+        # test file_ids length == 2
+        self.assertEqual(2, len(file_ids))
+
+        # test file info
+        for file_to_upload in upload_list:
+            rds_file_info = self.__get_file_info(file_to_upload[1])
+            self.assertTrue(self.__compare_dict(expected_file_info[file_to_upload[1]], rds_file_info))
+            self.assertEqual(file_ids[file_to_upload[1]], rds_file_info['_id'])
+
+
+    def test_download_file_by_name(self):
+        """
+        Test that a file can be downloaded by name and that its metadata is updated.
+        """
+        upload_list = self.__create_upload_list([self.test_files[0]], self.local_dir, self.remote_dirs[0])
+        file_ids = self.__upload_files([self.test_files[0]], [self.remote_dirs[0]])
+
+        filename_to_download = upload_list[0][1]
+        file = self.__download_file('name', filename_to_download)
+
+        decoded_file_contents = self.__remove_linux_BOM(file.data)
+
+        # check file name
+        self.assertEqual(filename_to_download, file.header_list[1][1].split('filename=')[1])
+
+        # check file contents are what we expect
+        self.assertEqual(expected_file_contents[filename_to_download], decoded_file_contents)
+
+        # check file type
+        self.assertEqual(expected_file_info['integration_test_files/rds_test_file.txt']['contentType'],
+                         file.mimetype)
+
+        # check file metadata reflects one download
+        updated_file_info = self.__get_file_info(filename_to_download)
+        self.assertTrue(self.__compare_dict(expected_post_download_file_metadata, updated_file_info))
+
+
+    def test_download_file_by_id(self):
+        """
+        Test that a file can be downloaded by id and that its metadata is updated.
+        """
+        upload_list = self.__create_upload_list([self.test_files[0]], self.local_dir, self.remote_dirs[0])
+        file_ids = self.__upload_files([self.test_files[0]], [self.remote_dirs[0]])
+        filename_to_download = upload_list[0][1]
+        file_id_to_download = file_ids[filename_to_download]
+        file = self.__download_file('id', file_id_to_download)
+
+        decoded_file_contents = self.__remove_linux_BOM(file.data)
+
+        # check file name
+        self.assertEqual(filename_to_download, file.header_list[1][1].split('filename=')[1])
+
+        # check file contents are what we expect
+        self.assertEqual(expected_file_contents[filename_to_download], decoded_file_contents)
+
+        # check file type
+        self.assertEqual(expected_file_info['integration_test_files/rds_test_file.txt']['contentType'],
+                         file.mimetype)
+
+        # check file metadata reflects one download
+        updated_file_info = self.__get_file_info(filename_to_download)
+        self.assertTrue(self.__compare_dict(expected_post_download_file_metadata, updated_file_info))
+
+
+    def test_file_manager_listing(self):
+        """
+        Test that the file manager properly displays files and directories
+        """
+        #upload_list = self.__create_upload_list(self.test_files, self.local_dir, self.remote_dirs[0])
+        file_ids = self.__upload_files(self.test_files, self.remote_dirs)
+        listing_root = self.__get_file_listing('/')
+
+        # check that self.remote_dir[0] is in the directory listing, we can't assume that's all that's in root
+        self.assertIn(self.remote_dirs[0], listing_root['dirs'])
+
+        # check the remote dir, should be no directores and only the files in self.test_files
+        listing_remote_dir = self.__get_file_listing(self.remote_dirs[0])
+        self.assertEqual(1, len(listing_remote_dir['dirs']))
+        self.assertEqual(['chuck_norris/'], listing_remote_dir['dirs'])
+        for filename in self.test_files:
+            self.assertIn(filename, listing_remote_dir['files'])
+        self.assertEqual(2, len(listing_remote_dir['files']))
+
+
+    def test_get_file_info(self):
+        """
+        Test getting file info
+        """
+        upload_list = self.__create_upload_list([self.test_files[0]], self.local_dir, self.remote_dirs[0])
+        file_ids = self.__upload_files([self.test_files[0]], [self.remote_dirs[0]])
+
+        filename_to_download = upload_list[0][1]
+
+        rds_file_info = self.__get_file_info(filename_to_download)
+        self.assertTrue(self.__compare_dict(expected_file_info[filename_to_download], rds_file_info))
+
+
+    def test_delete_file(self):
+        """
+        Test deleting a file
+        """
+        upload_list = self.__create_upload_list([self.test_files[0]], self.local_dir, self.remote_dirs[0])
+        upload_list += self.__create_upload_list([self.test_files[0]], self.local_dir, self.remote_dirs[1])
+        self.__upload_files([self.test_files[0]], [self.remote_dirs[0]])
+        self.__upload_files([self.test_files[0]], [self.remote_dirs[1]])
+
+        filename_to_delete = upload_list[0][1]
+
+        # delete the file
+        self.__delete_file(filename_to_delete)
+
+        # test the root dir listing, should have integration_test_files/ as a folder
+        listing_root = self.__get_file_listing('/')
+        self.assertIn(self.remote_dirs[0], listing_root['dirs'])
+
+        # test the integration_test_files/ dir listing
+        listing_remote_dir_0 = self.__get_file_listing(self.remote_dirs[0])
+        self.assertEqual([], listing_remote_dir_0['files'])
+        self.assertEqual([self.remote_dirs[1].split('/')[1] + '/'], listing_remote_dir_0['dirs'])
+
+        # test the chuck_norris/ dir listing
+        listing_remote_dir_1 = self.__get_file_listing(self.remote_dirs[1])
+        self.assertEqual([self.test_files[0]], listing_remote_dir_1['files'])
+        self.assertEqual([], listing_remote_dir_1['dirs'])
+
+
+    def test_delete_folder_recursive(self):
+        """
+        Test recursively deleting a folder
+        """
+        upload_list = []
+        for remote_dir in self.remote_dirs:
+            upload_list += (self.__create_upload_list(self.test_files, self.local_dir, remote_dir))
+            self.__upload_files(self.test_files, [remote_dir])
+
+        self.__delete_folder(self.remote_dirs[0])
+
+        listing_root = self.__get_file_listing('/')
+
+        # test that self.remote_dir[0] is not in the directory listing
+        self.assertNotIn(self.remote_dirs[0], listing_root['dirs'])
+
+        # test that all 4 added files are gone
+        for filename in upload_list:
+            file_info_response_msg = self.__get_file_info(filename[1])['message']
+            self.assertIn('GridFS Error: File does not exist', file_info_response_msg)
+            self.assertIn(filename[1], file_info_response_msg)
+
+
+###################################################################################################

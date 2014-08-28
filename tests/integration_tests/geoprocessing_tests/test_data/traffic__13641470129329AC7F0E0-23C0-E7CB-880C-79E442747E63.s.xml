@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><Report>
+<ReportTitle/>
+<ReportName>Business Locator</ReportName>
+<DataPath>Data</DataPath>
+<Areas>
+<Area>
+<ReportItem caption="" name="AREA_ID" value="12345_1"/>
+<ReportItem caption="" name="AREA_DESC" value="10 miles"/>
+<ReportItem caption="" name="DEMOG_ID" value="0"/>
+<ReportItem caption="" name="STORE_ID" value="12345"/>
+<ReportItem caption="" name="RING" value="1"/>
+<ReportItem caption="" name="STORE_NAME" value=""/>
+<ReportItem caption="" name="STORE_ADDR" value=""/>
+<ReportItem caption="" name="AREA_DESC2" value="Ring: 10 mile radius"/>
+<ReportItem caption="" name="STORE_LAT" value="34.042737"/>
+<ReportItem caption="" name="STORE_LONG" value="-117.183838"/>
+<ReportItem caption="" name="SITE_NAME" value=""/>
+<ReportItem caption="" name="TOTPOP00" value="529627.0000"/>
+<ReportItem caption="" name="TOTPOP_CY" value="614422.0000"/>
+<ReportItem caption="" name="TOTPOP_FY" value="635630.0000"/>
+<ReportItem caption="" name="G01_TotEmp" value="205949.000000"/>
+<ReportItem caption="" name="G01_Sales" value="35731502.000000"/>
+<ReportItem caption="Distance" name="Distance_1" value="0.09"/>
+<ReportItem caption="Latitude" name="Latitude_1" value="34.04403800000006"/>
+<ReportItem caption="Street" name="Street_1" value="S Center St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_1" value="W Cypress Ave (0.05 miles SE)"/>
+<ReportItem caption="Longitude" name="Longitude_1" value="-117.18424799999991"/>
+<ReportItem caption="Year of Count" name="Year_1" value="2010"/>
+<ReportItem caption="Count" name="Count_1" value="4,347"/>
+<ReportItem caption="Distance" name="Distance_2" value="0.32"/>
+<ReportItem caption="Latitude" name="Latitude_2" value="34.04201600000005"/>
+<ReportItem caption="Street" name="Street_2" value="W Palm Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_2" value="S Buena Vista St (0.04 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_2" value="-117.17831399999994"/>
+<ReportItem caption="Year of Count" name="Year_2" value="2010"/>
+<ReportItem caption="Count" name="Count_2" value="6,953"/>
+<ReportItem caption="Distance" name="Distance_3" value="0.34"/>
+<ReportItem caption="Latitude" name="Latitude_3" value="34.04464000000007"/>
+<ReportItem caption="Street" name="Street_3" value="W Fern Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_3" value="Nanette St (0.03 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_3" value="-117.18937299999993"/>
+<ReportItem caption="Year of Count" name="Year_3" value="2010"/>
+<ReportItem caption="Count" name="Count_3" value="6,963"/>
+<ReportItem caption="Distance" name="Distance_4" value="0.48"/>
+<ReportItem caption="Latitude" name="Latitude_4" value="34.04699800000009"/>
+<ReportItem caption="Street" name="Street_4" value="W Cypress Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_4" value="S 4th St (0.03 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_4" value="-117.17716699999994"/>
+<ReportItem caption="Year of Count" name="Year_4" value="2010"/>
+<ReportItem caption="Count" name="Count_4" value="7,839"/>
+<ReportItem caption="Distance" name="Distance_5" value="0.49"/>
+<ReportItem caption="Latitude" name="Latitude_5" value="34.04069000000004"/>
+<ReportItem caption="Street" name="Street_5" value="S San Mateo St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_5" value="W Cypress Ave (0.11 miles SE)"/>
+<ReportItem caption="Longitude" name="Longitude_5" value="-117.19206199999991"/>
+<ReportItem caption="Year of Count" name="Year_5" value="2010"/>
+<ReportItem caption="Count" name="Count_5" value="5,192"/>
+<ReportItem caption="Distance" name="Distance_6" value="0.49"/>
+<ReportItem caption="Latitude" name="Latitude_6" value="34.03702000000004"/>
+<ReportItem caption="Street" name="Street_6" value="S Center St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_6" value="W Highland Ave (0.03 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_6" value="-117.1786479999999"/>
+<ReportItem caption="Year of Count" name="Year_6" value="2010"/>
+<ReportItem caption="Count" name="Count_6" value="1,614"/>
+<ReportItem caption="Distance" name="Distance_7" value="0.55"/>
+<ReportItem caption="Latitude" name="Latitude_7" value="34.04527100000007"/>
+<ReportItem caption="Street" name="Street_7" value="Cajon St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_7" value="Clifton Ct (0.04 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_7" value="-117.17476799999991"/>
+<ReportItem caption="Year of Count" name="Year_7" value="2010"/>
+<ReportItem caption="Count" name="Count_7" value="4,327"/>
+<ReportItem caption="Distance" name="Distance_8" value="0.55"/>
+<ReportItem caption="Latitude" name="Latitude_8" value="34.047539000000086"/>
+<ReportItem caption="Street" name="Street_8" value="E Cypress Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_8" value="Cajon St (0.02 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_8" value="-117.17619899999994"/>
+<ReportItem caption="Year of Count" name="Year_8" value="1981"/>
+<ReportItem caption="Count" name="Count_8" value="3,231"/>
+<ReportItem caption="Distance" name="Distance_9" value="0.61"/>
+<ReportItem caption="Latitude" name="Latitude_9" value="34.040347000000054"/>
+<ReportItem caption="Street" name="Street_9" value="W Highland Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_9" value="Prospect Ct (0.12 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_9" value="-117.17348599999991"/>
+<ReportItem caption="Year of Count" name="Year_9" value="2010"/>
+<ReportItem caption="Count" name="Count_9" value="5,009"/>
+<ReportItem caption="Distance" name="Distance_10" value="0.65"/>
+<ReportItem caption="Latitude" name="Latitude_10" value="34.052140000000065"/>
+<ReportItem caption="Street" name="Street_10" value="W Olive Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_10" value="Grant St (0.02 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_10" value="-117.18364899999995"/>
+<ReportItem caption="Year of Count" name="Year_10" value="2010"/>
+<ReportItem caption="Count" name="Count_10" value="3,277"/>
+<ReportItem caption="Distance" name="Distance_11" value="0.69"/>
+<ReportItem caption="Latitude" name="Latitude_11" value="34.03293600000006"/>
+<ReportItem caption="Street" name="Street_11" value="W Crescent Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_11" value="Alessandro Rd (0.04 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_11" value="-117.1816629999999"/>
+<ReportItem caption="Year of Count" name="Year_11" value="2010"/>
+<ReportItem caption="Count" name="Count_11" value="743"/>
+<ReportItem caption="Distance" name="Distance_12" value="0.79"/>
+<ReportItem caption="Latitude" name="Latitude_12" value="34.04094900000007"/>
+<ReportItem caption="Street" name="Street_12" value="Lakeside Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_12" value="Laurel Ave (0.04 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_12" value="-117.19747699999994"/>
+<ReportItem caption="Year of Count" name="Year_12" value="2010"/>
+<ReportItem caption="Count" name="Count_12" value="1,924"/>
+<ReportItem caption="Distance" name="Distance_13" value="0.80"/>
+<ReportItem caption="Latitude" name="Latitude_13" value="34.05436700000007"/>
+<ReportItem caption="Street" name="Street_13" value="S Eureka St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_13" value="W Vine St (0.03 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_13" value="-117.18462799999992"/>
+<ReportItem caption="Year of Count" name="Year_13" value="1982"/>
+<ReportItem caption="Count" name="Count_13" value="1,897"/>
+<ReportItem caption="Distance" name="Distance_14" value="0.80"/>
+<ReportItem caption="Latitude" name="Latitude_14" value="34.03185600000006"/>
+<ReportItem caption="Street" name="Street_14" value="W Highland Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_14" value="Cedar Ave (0.03 miles NE)"/>
+<ReportItem caption="Longitude" name="Longitude_14" value="-117.18890999999991"/>
+<ReportItem caption="Year of Count" name="Year_14" value="2010"/>
+<ReportItem caption="Count" name="Count_14" value="4,947"/>
+<ReportItem caption="Distance" name="Distance_15" value="0.81"/>
+<ReportItem caption="Latitude" name="Latitude_15" value="34.05052000000006"/>
+<ReportItem caption="Street" name="Street_15" value="Brookside Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_15" value="Roma St (0.02 miles NE)"/>
+<ReportItem caption="Longitude" name="Longitude_15" value="-117.19446099999993"/>
+<ReportItem caption="Year of Count" name="Year_15" value="2010"/>
+<ReportItem caption="Count" name="Count_15" value="13,189"/>
+<ReportItem caption="Distance" name="Distance_16" value="0.83"/>
+<ReportItem caption="Latitude" name="Latitude_16" value="34.04980200000006"/>
+<ReportItem caption="Street" name="Street_16" value="E Cypress Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_16" value="la Paloma St (0.03 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_16" value="-117.1720929999999"/>
+<ReportItem caption="Year of Count" name="Year_16" value="1994"/>
+<ReportItem caption="Count" name="Count_16" value="9,849"/>
+<ReportItem caption="Distance" name="Distance_17" value="0.87"/>
+<ReportItem caption="Latitude" name="Latitude_17" value="34.05527900000004"/>
+<ReportItem caption="Street" name="Street_17" value="S Eureka St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_17" value="W Citrus Ave (0.02 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_17" value="-117.18535099999991"/>
+<ReportItem caption="Year of Count" name="Year_17" value="1983"/>
+<ReportItem caption="Count" name="Count_17" value="1,970"/>
+<ReportItem caption="Distance" name="Distance_18" value="0.88"/>
+<ReportItem caption="Latitude" name="Latitude_18" value="34.03156000000007"/>
+<ReportItem caption="Street" name="Street_18" value="Serpentine Dr"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_18" value="W Highland Ave (0.02 miles NE)"/>
+<ReportItem caption="Longitude" name="Longitude_18" value="-117.19135499999993"/>
+<ReportItem caption="Year of Count" name="Year_18" value="2010"/>
+<ReportItem caption="Count" name="Count_18" value="1,252"/>
+<ReportItem caption="Distance" name="Distance_19" value="0.89"/>
+<ReportItem caption="Latitude" name="Latitude_19" value="34.05557600000009"/>
+<ReportItem caption="Street" name="Street_19" value="W Citrus Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_19" value="S 4th St (0.03 miles W)"/>
+<ReportItem caption="Longitude" name="Longitude_19" value="-117.1831509999999"/>
+<ReportItem caption="Year of Count" name="Year_19" value="1989"/>
+<ReportItem caption="Count" name="Count_19" value="6,206"/>
+<ReportItem caption="Distance" name="Distance_20" value="0.89"/>
+<ReportItem caption="Latitude" name="Latitude_20" value="34.055562000000066"/>
+<ReportItem caption="Street" name="Street_20" value="E Citrus Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_20" value="S 5th St (0.04 miles E)"/>
+<ReportItem caption="Longitude" name="Longitude_20" value="-117.18220999999994"/>
+<ReportItem caption="Year of Count" name="Year_20" value="1989"/>
+<ReportItem caption="Count" name="Count_20" value="5,680"/>
+<ReportItem caption="Distance" name="Distance_21" value="0.90"/>
+<ReportItem caption="Latitude" name="Latitude_21" value="34.047127000000046"/>
+<ReportItem caption="Street" name="Street_21" value="E Palm Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_21" value="Redlands Blvd (0.02 miles NE)"/>
+<ReportItem caption="Longitude" name="Longitude_21" value="-117.16904199999993"/>
+<ReportItem caption="Year of Count" name="Year_21" value="1994"/>
+<ReportItem caption="Count" name="Count_21" value="8,993"/>
+<ReportItem caption="Distance" name="Distance_22" value="0.94"/>
+<ReportItem caption="Latitude" name="Latitude_22" value="34.03473900000006"/>
+<ReportItem caption="Street" name="Street_22" value="Sunnyside Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_22" value="W Clifton Ave (0.06 miles SE)"/>
+<ReportItem caption="Longitude" name="Longitude_22" value="-117.1970659999999"/>
+<ReportItem caption="Year of Count" name="Year_22" value="2010"/>
+<ReportItem caption="Count" name="Count_22" value="784"/>
+<ReportItem caption="Distance" name="Distance_23" value="0.95"/>
+<ReportItem caption="Latitude" name="Latitude_23" value="34.05409200000008"/>
+<ReportItem caption="Street" name="Street_23" value="E Redlands Blvd"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_23" value="S Church St (0.04 miles SE)"/>
+<ReportItem caption="Longitude" name="Longitude_23" value="-117.17456699999991"/>
+<ReportItem caption="Year of Count" name="Year_23" value="2010"/>
+<ReportItem caption="Count" name="Count_23" value="18,528"/>
+<ReportItem caption="Distance" name="Distance_24" value="0.97"/>
+<ReportItem caption="Latitude" name="Latitude_24" value="34.05552800000004"/>
+<ReportItem caption="Street" name="Street_24" value="Citrus Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_24" value="9th St (0.02 miles W)"/>
+<ReportItem caption="Longitude" name="Longitude_24" value="-117.1769139999999"/>
+<ReportItem caption="Year of Count" name="Year_24" value="2010"/>
+<ReportItem caption="Count" name="Count_24" value="12,318"/>
+<ReportItem caption="Distance" name="Distance_25" value="0.97"/>
+<ReportItem caption="Latitude" name="Latitude_25" value="34.031040000000075"/>
+<ReportItem caption="Street" name="Street_25" value="Smiley Heights Dr"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_25" value="Arroyo Crst (0.02 miles E)"/>
+<ReportItem caption="Longitude" name="Longitude_25" value="-117.19340299999993"/>
+<ReportItem caption="Year of Count" name="Year_25" value="2010"/>
+<ReportItem caption="Count" name="Count_25" value="1,547"/>
+<ReportItem caption="Distance" name="Distance_26" value="0.98"/>
+<ReportItem caption="Latitude" name="Latitude_26" value="34.033179000000075"/>
+<ReportItem caption="Street" name="Street_26" value="Elizabeth St"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_26" value="Fountain Ave (0.04 miles NW)"/>
+<ReportItem caption="Longitude" name="Longitude_26" value="-117.1710599999999"/>
+<ReportItem caption="Year of Count" name="Year_26" value="2010"/>
+<ReportItem caption="Count" name="Count_26" value="1,993"/>
+<ReportItem caption="Distance" name="Distance_27" value="0.99"/>
+<ReportItem caption="Latitude" name="Latitude_27" value="34.055525000000046"/>
+<ReportItem caption="Street" name="Street_27" value="Citrus Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_27" value="9th St (0.07 miles W)"/>
+<ReportItem caption="Longitude" name="Longitude_27" value="-117.17606899999993"/>
+<ReportItem caption="Year of Count" name="Year_27" value="1994"/>
+<ReportItem caption="Count" name="Count_27" value="11,765"/>
+<ReportItem caption="Distance" name="Distance_28" value="1.00"/>
+<ReportItem caption="Latitude" name="Latitude_28" value="34.02870600000006"/>
+<ReportItem caption="Street" name="Street_28" value="Alessandro Rd"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_28" value="Rebecca Crst (0.16 miles SE)"/>
+<ReportItem caption="Longitude" name="Longitude_28" value="-117.1794779999999"/>
+<ReportItem caption="Year of Count" name="Year_28" value="2010"/>
+<ReportItem caption="Count" name="Count_28" value="4,164"/>
+<ReportItem caption="Distance" name="Distance_29" value="1.02"/>
+<ReportItem caption="Latitude" name="Latitude_29" value="34.055529000000035"/>
+<ReportItem caption="Street" name="Street_29" value="Citrus Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_29" value="Church St (0.05 miles E)"/>
+<ReportItem caption="Longitude" name="Longitude_29" value="-117.17475799999994"/>
+<ReportItem caption="Year of Count" name="Year_29" value="1994"/>
+<ReportItem caption="Count" name="Count_29" value="10,372"/>
+<ReportItem caption="Distance" name="Distance_30" value="1.14"/>
+<ReportItem caption="Latitude" name="Latitude_30" value="34.05233400000009"/>
+<ReportItem caption="Street" name="Street_30" value="E Cypress Ave"/>
+<ReportItem caption="Closest Cross-street:" name="XStreet_30" value="Lime St (0.03 miles SW)"/>
+<ReportItem caption="Longitude" name="Longitude_30" value="-117.1674819999999"/>
+<ReportItem caption="Year of Count" name="Year_30" value="1992"/>
+<ReportItem caption="Count" name="Count_30" value="9,446"/>
+</Area>
+</Areas>
+</Report>

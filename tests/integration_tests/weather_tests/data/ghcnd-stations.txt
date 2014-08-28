@@ -1,0 +1,4 @@
+US1SCLX0061  34.0699  -81.2108   74.1 SC IRMO 2.1 SW                                 
+US1SCRC0006  34.1589  -80.9317  124.4 SC BLYTHEWOOD 4.7 SSE                          
+US1SCRC0012  34.1359  -80.8886  109.1 SC COLUMBIA 6.7 N                              
+USC00387666  34.1419  -80.8700  134.1 SC SANDHILL RSCH ELGIN                         
